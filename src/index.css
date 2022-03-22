@@ -6,4 +6,5 @@
 
 body {
   background-color: var(--clr-grey-background);
+  min-height: auto;
 }
