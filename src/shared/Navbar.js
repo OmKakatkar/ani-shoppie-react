@@ -4,7 +4,7 @@ import {
 	faHeart,
 	faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
-import './navbar.css';
+import './Navbar.css';
 
 function Navbar() {
 	return (
@@ -14,11 +14,10 @@ function Navbar() {
 					ani shoppie
 				</a>
 			</div>
-			<label htmlFor="searchBar" className="search-container">
+			<label className="search-container" aria-label="search">
 				<input
 					type="search"
 					className="searchbar text-md"
-					id="searchBar"
 					placeholder="Search..."
 				/>
 			</label>
