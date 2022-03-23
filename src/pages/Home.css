@@ -1,0 +1,57 @@
+.home-nav {
+	opacity: 0.9;
+}
+
+/* Hero Section */
+.hero {
+	min-height: 100vh;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1)),
+		url('https://source.unsplash.com/TD4DBagg2wE/1600x900');
+}
+
+.hero-heading {
+	color: var(--gray);
+	font-size: 10rem;
+	text-transform: uppercase;
+}
+
+.hero-description {
+	max-width: 50ch;
+	color: var(--gray);
+	font-size: var(--fs-h4);
+	margin-top: 3rem;
+}
+
+.hero-btn {
+	margin-top: 3rem;
+	font-size: var(--fs-h3);
+	font-weight: var(--fw-bold);
+}
+
+/* Category and Services */
+.home-section-heading {
+	margin: 4rem 0;
+}
+
+.card a {
+	color: inherit;
+}
+
+/* Footer */
+.home-footer {
+	background-color: var(--dark-gray);
+	padding: 2rem;
+	margin-top: 2rem;
+	color: var(--white);
+}
+
+.home-footer .nav-link-container {
+	justify-content: space-between;
+	margin-top: 1rem;
+	min-width: 10rem;
+}
+
+.home-footer .nav-link a {
+	color: inherit;
+	font-size: var(--fs-h4);
+}
