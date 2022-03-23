@@ -1,4 +1,5 @@
 import './App.css';
+import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import ProductPage from './pages/ProductPage';
@@ -12,10 +13,11 @@ function App() {
 		<div className="App">
 			{/* TODO: Add routing. Cart and WishList are protected under auth. Home, Product List, Auth Pages are public*/}
 			<Navbar />
-			{/* <Home /> */}
+			<Home />
 			{/* <SignUp /> */}
 			{/* <Wishlist /> */}
-			<ProductPage />
+			{/* <ProductPage /> */}
+			{/* <Cart /> */}
 			{/* <Login /> */}
 			{/* <Footer /> */}
 		</div>

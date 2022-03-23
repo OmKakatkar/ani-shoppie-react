@@ -1,0 +1,26 @@
+.cart-summary {
+  position: fixed;
+  top: 10rem;
+  right: 0;
+  background-color: var(--white);
+  width: 40rem;
+  margin-right: 2rem;
+}
+
+.cart-summary header {
+  background-color: var(--black);
+  color: var(--white);
+  padding: 1rem;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-h5);
+  padding: 1rem;
+}
+
+.summary-checkout {
+  width: 75%;
+  margin: auto;
+}
