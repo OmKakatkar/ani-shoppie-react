@@ -9,13 +9,17 @@ function EcommerceCard({
 	price,
 	discount,
 	badgeText,
+	isWishlist,
 	cls,
 	children
 }) {
 	return (
 		<Card title={title} description={description} isImage>
 			<button className="icon-btn">
-				<FontAwesomeIcon icon={faHeart} className="icon wishlist" />
+				<FontAwesomeIcon
+					icon={faHeart}
+					className={`icon ${isWishlist && 'wishlist'}`}
+				/>
 			</button>
 			<div className="badge hidden">Best Seller</div>
 			<div className="price">

@@ -1,5 +1,9 @@
 import './App.css';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import ProductPage from './pages/ProductPage';
+import SignUp from './pages/SignUp';
+import Wishlist from './pages/Wishlist';
 import Footer from './shared/Footer';
 import Navbar from './shared/Navbar';
 
@@ -8,8 +12,12 @@ function App() {
 		<div className="App">
 			{/* TODO: Add routing. Cart and WishList are protected under auth. Home, Product List, Auth Pages are public*/}
 			<Navbar />
-			<Home />
-			<Footer />
+			{/* <Home /> */}
+			{/* <SignUp /> */}
+			{/* <Wishlist /> */}
+			<ProductPage />
+			{/* <Login /> */}
+			{/* <Footer /> */}
 		</div>
 	);
 }

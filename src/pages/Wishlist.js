@@ -14,6 +14,7 @@ function Wishlist() {
 						description={product.description}
 						price={product.price}
 						discount={product.discount}
+						isWishlist
 					>
 						<button className="btn bg-blue rounded">Move to Cart</button>
 					</EcommerceCard>

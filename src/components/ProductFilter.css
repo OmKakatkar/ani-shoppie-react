@@ -1,0 +1,39 @@
+.filter-container {
+	position: fixed;
+	min-height: calc(100vh - 7rem);
+	background-color: white;
+	margin-top: 7rem;
+	border: none;
+	padding: 1rem;
+	min-width: 25rem;
+}
+
+.filter-head-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.filter-clear {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.price-range-labels {
+	display: flex;
+	justify-content: space-between;
+}
+
+.price-range-slider {
+	width: 100%;
+	margin-top: 1rem;
+}
+
+.filter-heading {
+	display: inline-block;
+}
+
+.filter-type-container,
+.filter-list {
+	margin-top: 0.5rem;
+}
