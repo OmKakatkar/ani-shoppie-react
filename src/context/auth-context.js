@@ -26,10 +26,10 @@ const AuthProvider = ({ children }) => {
 	const handleSignUp = async ({ name, email, password }) => {
 		try {
 			const {
-				data: { user, encodedToken }
+				data: { createdUser: user, encodedToken: token }
 			} = await signup({ name, email, password });
-			if (encodedToken) {
-				localStorage.setItem(currentUser, JSON.stringify({ user }));
+			if (token) {
+				localStorage.setItem(currentUser, JSON.stringify({ user, token }));
 				setUser(JSON.parse(localStorage.getItem(currentUser)));
 			}
 		} catch (err) {
