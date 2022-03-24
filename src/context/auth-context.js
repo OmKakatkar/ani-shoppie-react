@@ -42,12 +42,10 @@ const AuthProvider = ({ children }) => {
 		setUser({});
 	};
 
+	const providerData = { user, handleLogin, handleLogout, handleSignUp };
+
 	return (
-		<AuthContext.Provider
-			value={{ user, handleLogin, handleLogout, handleSignUp }}
-		>
-			{children}
-		</AuthContext.Provider>
+		<AuthContext.Provider value={providerData}>{children}</AuthContext.Provider>
 	);
 };
 
