@@ -6,24 +6,24 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
-function Footer() {
+export const Footer = () => {
 	return (
-		<footer class="home-footer flex-container flex-column">
+		<footer className="home-footer flex-container flex-column">
 			<p>
-				Made with and for <FontAwesomeIcon icon={faCoffee}/> by Om Kakatkar
+				Made with and for <FontAwesomeIcon icon={faCoffee} /> by Om Kakatkar
 			</p>
-			<ul class="nav-link-container flex">
-				<li class="nav-link">
+			<ul className="nav-link-container flex">
+				<li className="nav-link">
 					<a href="https://twitter.com/omkakatkar">
 						<FontAwesomeIcon icon={faTwitter} />
 					</a>
 				</li>
-				<li class="nav-link">
+				<li className="nav-link">
 					<a href="https://www.linkedin.com/in/omkakatkar/">
 						<FontAwesomeIcon icon={faLinkedin} />
 					</a>
 				</li>
-				<li class="nav-link">
+				<li className="nav-link">
 					<a href="https://github.com/OmKakatkar">
 						<FontAwesomeIcon icon={faGithub} />
 					</a>
@@ -31,6 +31,4 @@ function Footer() {
 			</ul>
 		</footer>
 	);
-}
-
-export default Footer;
+};

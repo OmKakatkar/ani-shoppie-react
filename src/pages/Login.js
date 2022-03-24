@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/auth-context';
 import './Auth.css';
 
-function Login() {
+export const Login = () => {
 	const initialLoginData = {
 		email: '',
 		password: ''
@@ -93,6 +93,4 @@ function Login() {
 			</div>
 		</main>
 	);
-}
-
-export default Login;
+};

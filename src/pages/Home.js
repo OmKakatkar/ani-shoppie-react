@@ -1,9 +1,10 @@
 import { categories } from '../backend/db/categories';
 import { services } from '../backend/db/services';
 import Card from '../components/Card';
+import {Footer} from '../shared'
 import './Home.css';
 
-function Home() {
+export const Home = () => {
 	return (
 		<>
 			<header>
@@ -46,8 +47,7 @@ function Home() {
 					))}
 				</section>
 			</main>
+			<Footer />
 		</>
 	);
-}
-
-export default Home;
+};

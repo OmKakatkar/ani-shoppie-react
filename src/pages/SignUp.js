@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/auth-context';
 import './Auth.css';
 
-function SignUp() {
+export const SignUp = () => {
 	const initialSignUpData = {
 		name: '',
 		email: '',
@@ -97,6 +97,4 @@ function SignUp() {
 			</form>
 		</main>
 	);
-}
-
-export default SignUp;
+};

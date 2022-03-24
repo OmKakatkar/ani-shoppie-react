@@ -3,7 +3,7 @@ import EcommerceCard from '../components/EcommerceCard';
 import ProductFilter from '../components/ProductFilter';
 import './ProductPage.css';
 
-function ProductPage() {
+export const ProductPage = () => {
 	return (
 		<>
 			<ProductFilter />
@@ -28,6 +28,4 @@ function ProductPage() {
 			</main>
 		</>
 	);
-}
-
-export default ProductPage;
+};
