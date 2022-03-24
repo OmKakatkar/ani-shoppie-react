@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom';
 import { categories } from '../backend/db/categories';
 import { services } from '../backend/db/services';
 import Card from '../components/Card';
-import {Footer} from '../shared'
+import { Footer } from '../shared';
 import './Home.css';
 
 export const Home = () => {
@@ -14,7 +15,9 @@ export const Home = () => {
 						Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 						Perferendis nam minus, sunt exercitationem adipisci neque
 					</p>
-					<button className="btn rounded bg-green hero-btn">Buy Now!</button>
+					<Link to="products" className="btn rounded bg-green hero-btn">
+						Buy Now!
+					</Link>
 				</div>
 			</header>
 			<main>
