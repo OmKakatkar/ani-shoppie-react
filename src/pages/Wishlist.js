@@ -1,7 +1,7 @@
 import { products } from '../backend/db/products';
 import EcommerceCard from '../components/EcommerceCard';
 
-function Wishlist() {
+export const Wishlist = () => {
 	return (
 		<main className="ecom-main">
 			<h1 className="text-xhuge text-center">Wishlist</h1>
@@ -22,6 +22,4 @@ function Wishlist() {
 			</div>
 		</main>
 	);
-}
-
-export default Wishlist;
+};

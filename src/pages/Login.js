@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/auth-context';
 import './Auth.css';
 
-function Login() {
+export const Login = () => {
 	const initialLoginData = {
 		email: '',
 		password: ''
@@ -68,9 +69,9 @@ function Login() {
 							<div className="checkbox-icon"></div>
 							Remember me
 						</label>
-						<a href="./" className="form-link">
+						<Link to="/password-reset" className="form-link">
 							Forgot Password?
-						</a>
+						</Link>
 					</div>
 					<button
 						type="submit"
@@ -87,12 +88,10 @@ function Login() {
 				>
 					Guest Login
 				</button>
-				<a href="./signup.html" className="form-link">
+				<Link to="/signup" className="form-link">
 					Create an account
-				</a>
+				</Link>
 			</div>
 		</main>
 	);
-}
-
-export default Login;
+};

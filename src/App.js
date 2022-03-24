@@ -1,25 +1,32 @@
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Cart from './pages/Cart';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import ProductPage from './pages/ProductPage';
-import SignUp from './pages/SignUp';
-import Wishlist from './pages/Wishlist';
-import Footer from './shared/Footer';
-import Navbar from './shared/Navbar';
+import { useAuth } from './context/auth-context';
+import { Home, ProductPage, Login, SignUp, Wishlist, Cart } from './pages';
+import { Navbar } from './shared';
 
 function App() {
+	const { user } = useAuth();
 	return (
 		<div className="App">
-			{/* TODO: Add routing. Cart and WishList are protected under auth. Home, Product List, Auth Pages are public*/}
 			<Navbar />
-			<Home />
-			{/* <SignUp /> */}
-			{/* <Wishlist /> */}
-			{/* <ProductPage /> */}
-			{/* <Cart /> */}
-			{/* <Login /> */}
-			{/* <Footer /> */}
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="products" element={<ProductPage />} />
+
+				{!user.token && (
+					<>
+						<Route path="login" element={<Login />} />
+						<Route path="signup" element={<SignUp />} />
+					</>
+				)}
+				{user.token && (
+					<>
+						<Route path="cart" element={<Cart />} />
+						<Route path="wishlist" element={<Wishlist />} />
+					</>
+				)}
+				<Route path="*" element={<Navigate to="/" />} />
+			</Routes>
 		</div>
 	);
 }
