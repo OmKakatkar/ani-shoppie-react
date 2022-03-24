@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/auth-context';
 import './Auth.css';
 
@@ -91,9 +92,9 @@ export const SignUp = () => {
 				>
 					Create New Account
 				</button>
-				<a href="./login.html" className="form-link">
+				<Link to="/login" className="form-link">
 					Already have an account
-				</a>
+				</Link>
 			</form>
 		</main>
 	);

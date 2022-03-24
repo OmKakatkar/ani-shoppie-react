@@ -65,7 +65,7 @@ export const Navbar = () => {
 				</li>
 				<li className="nav-link">
 					{user.token && (
-						<Link to="cart" className="flex-container flex-column icon-badge">
+						<Link to="wishlist" className="flex-container flex-column icon-badge">
 							<FontAwesomeIcon icon={faHeart} className="text-lg" />
 							<span className="text-sm">Wishlist</span>
 							<span className="badge">11</span>
