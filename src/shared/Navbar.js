@@ -5,8 +5,12 @@ import {
 	faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
+import { useAuth } from '../context/auth-context';
 
 function Navbar() {
+	const { user, handleLogout } = useAuth();
+	console.log(user.token);
+
 	return (
 		<nav className="nav fix-top ecom-nav home-nav">
 			<div className="brand">
@@ -24,17 +28,24 @@ function Navbar() {
 			<ul className="nav-link-container flex-container">
 				<li className="nav-link">
 					<a href="#" className="flex-container flex-column">
-						{/* <i className="fas fa-user text-lg"></i> */}
 						<FontAwesomeIcon icon={faUser} className="text-lg" />
 						<span className="text-sm">Profile</span>
 					</a>
 					<div className="dropdown">
-						<button className="btn rounded bd-red">Log Out</button>
+						{!user.token && (
+							<a className="btn rounded bd-red" href="./login">
+								LogIn / Register
+							</a>
+						)}
+						{user.token && (
+							<button className="btn rounded bd-red" onClick={handleLogout}>
+								Log Out
+							</button>
+						)}
 					</div>
 				</li>
 				<li className="nav-link">
 					<a href="#" className="flex-container flex-column icon-badge">
-						{/* <i className="fas fa-shopping-cart text-lg"></i> */}
 						<FontAwesomeIcon icon={faShoppingCart} className="text-lg" />
 						<span className="text-sm">My Cart</span>
 						<span className="badge">5</span>
@@ -42,7 +53,6 @@ function Navbar() {
 				</li>
 				<li className="nav-link">
 					<a href="#" className="flex-container flex-column icon-badge">
-						{/* <i className="fas fa-heart text-lg"></i> */}
 						<FontAwesomeIcon icon={faHeart} className="text-lg" />
 						<span className="text-sm">Wishlist</span>
 						<span className="badge">11</span>
