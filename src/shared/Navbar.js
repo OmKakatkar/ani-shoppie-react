@@ -9,7 +9,6 @@ import { useAuth } from '../context/auth-context';
 
 function Navbar() {
 	const { user, handleLogout } = useAuth();
-	console.log(user.token);
 
 	return (
 		<nav className="nav fix-top ecom-nav home-nav">
