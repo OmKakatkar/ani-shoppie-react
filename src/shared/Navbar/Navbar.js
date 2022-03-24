@@ -5,7 +5,7 @@ import {
 	faShoppingCart
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
-import { useAuth } from '../context/auth-context';
+import { useAuth } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
