@@ -1,25 +1,29 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import EcommerceCard from '../components/EcommerceCard';
 import ProductFilter from '../components/ProductFilter';
 import { getProducts } from '../util/product-request';
+import { useProduct } from '../context/product-context';
+import { sortByPrice } from '../helpers/filter-helper';
 import './ProductPage.css';
 
 export const ProductPage = () => {
-	const [productList, setProductList] = useState([]);
+	const { products, setProducts, filters } = useProduct();
+	const { price } = filters;
 
+	const sortedProducts = sortByPrice(products, price);
 	useEffect(() => {
 		(async () => {
 			const { data } = await getProducts();
-			setProductList(data.products);
+			setProducts(data.products);
 		})();
-	}, []);
+	}, [setProducts]);
 	return (
 		<>
 			<ProductFilter />
 			<main className="product-main">
 				<h1 className="text-xhuge text-center">Products</h1>
 				<div className="container flex-container">
-					{productList.map(product => (
+					{sortedProducts.map(product => (
 						<EcommerceCard
 							key={product._id}
 							title={product.title}

@@ -1,6 +1,14 @@
+import {
+	PRICE_HIGH_TO_LOW,
+	PRICE_LOW_TO_HIGH,
+	SORT_BY_PRICE
+} from '../constants/filter-constants';
+import { useProduct } from '../context/product-context';
 import './ProductFilter.css';
 
 function ProductFilter() {
+	const { filters, dispatch } = useProduct();
+	const { price } = filters;
 	return (
 		<aside className="aside-nav filter-container">
 			<div className="filter-head-container">
@@ -90,14 +98,30 @@ function ProductFilter() {
 				<ul className="filter-list">
 					<li>
 						<label className="radio">
-							<input type="radio" name="sort" className="radio-input" />
+							<input
+								type="radio"
+								name="sort"
+								className="radio-input"
+								onChange={() => {
+									dispatch({ type: SORT_BY_PRICE, payload: PRICE_HIGH_TO_LOW });
+								}}
+								checked={price && price === PRICE_HIGH_TO_LOW}
+							/>
 							<div className="radio-icon"></div>
 							High to Low Price
 						</label>
 					</li>
 					<li>
 						<label className="radio">
-							<input type="radio" name="sort" className="radio-input" />
+							<input
+								type="radio"
+								name="sort"
+								className="radio-input"
+								onChange={() =>
+									dispatch({ type: SORT_BY_PRICE, payload: PRICE_LOW_TO_HIGH })
+								}
+								checked={price && price === PRICE_LOW_TO_HIGH}
+							/>
 							<div className="radio-icon"></div>
 							Low to High Price
 						</label>
