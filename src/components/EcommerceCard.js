@@ -24,7 +24,7 @@ function EcommerceCard({
 			<div className="badge hidden">Best Seller</div>
 			<div className="price">
 				<span className="discount-price">
-					Rs. {Math.round(price - price / discount)}
+					Rs. {Math.round(price - (price * discount) / 100)}
 				</span>
 				<span className="original-price">Rs. {price}</span>
 				<span className="offer">{discount}% off</span>
