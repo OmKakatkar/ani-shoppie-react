@@ -1,28 +1,25 @@
 // Sort Constants
-const SORT_BY_PRICE = 'SORT_BY_PRICE';
-const PRICE_HIGH_TO_LOW = 'PRICE_HIGH_TO_LOW';
-const PRICE_LOW_TO_HIGH = 'PRICE_LOW_TO_HIGH';
+export const SORT_BY_PRICE = 'SORT_BY_PRICE';
+export const PRICE_HIGH_TO_LOW = 'PRICE_HIGH_TO_LOW';
+export const PRICE_LOW_TO_HIGH = 'PRICE_LOW_TO_HIGH';
 
 // Category Constants
-const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
-const CATEGORY_INSTANT_COFFEE = 'Instant Coffee';
-const CATEGORY_FILTER_COFFEE = 'Filter Coffee';
-const CATEGORY_TEA_BLEND = 'Tea Blend';
+export const FILTER_BY_CATEGORY = 'FILTER_BY_CATEGORY';
+export const CATEGORY_INSTANT_COFFEE = 'Instant Coffee';
+export const CATEGORY_FILTER_COFFEE = 'Filter Coffee';
+export const CATEGORY_EXPRESSO = 'Expresso';
+export const CATEGORY_MUG = 'Mug';
 
 // Price Filter Constants
-const FILTER_BY_PRICE = 'FILTER_BY_PRICE';
+export const FILTER_BY_PRICE = 'FILTER_BY_PRICE';
+
+// Rating Filter Constants
+export const FILTER_BY_RATING = 'FILTER_BY_RATING';
+export const RATING_4 = 'RATING_4';
+export const RATING_3 = 'RATING_3';
+export const RATING_2 = 'RATING_2';
+export const RATING_1 = 'RATING_1';
+export const RATING_UNRATED = 'RATING_UNRATED';
 
 // Clear Filter Constant
-const CLEAR_FILTERS = 'CLEAR_FILTERS';
-
-export {
-	SORT_BY_PRICE,
-	PRICE_HIGH_TO_LOW,
-	PRICE_LOW_TO_HIGH,
-	FILTER_BY_CATEGORY,
-	CATEGORY_INSTANT_COFFEE,
-	CATEGORY_FILTER_COFFEE,
-	CATEGORY_TEA_BLEND,
-	FILTER_BY_PRICE,
-	CLEAR_FILTERS
-};
+export const CLEAR_FILTERS = 'CLEAR_FILTERS';

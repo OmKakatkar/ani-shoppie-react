@@ -4,7 +4,8 @@ import {
 	SORT_BY_PRICE,
 	FILTER_BY_CATEGORY,
 	FILTER_BY_PRICE,
-	CLEAR_FILTERS
+	CLEAR_FILTERS,
+	FILTER_BY_RATING
 } from '../constants/filter-constants';
 
 const ProductContext = createContext();
@@ -20,7 +21,8 @@ const removeCategory = (categoryArray, category) => {
 const intialData = {
 	price: PRICE_LOW_TO_HIGH,
 	category: [],
-	maxPrice: ''
+	maxPrice: '',
+	rating: ''
 };
 
 const reducer = (state, action) => {
@@ -42,6 +44,8 @@ const reducer = (state, action) => {
 			};
 		case FILTER_BY_PRICE:
 			return { ...state, maxPrice: action.payload };
+		case FILTER_BY_RATING:
+			return { ...state, rating: action.payload };
 		default:
 			return state;
 	}

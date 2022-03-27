@@ -8,9 +8,15 @@ import './ProductPage.css';
 
 export const ProductPage = () => {
 	const { products, setProducts, filters } = useProduct();
-	const { category, maxPrice, price } = filters;
+	const { category, maxPrice, price, rating } = filters;
 
-	const filteredProducts = getFilteredProducts(products, category, maxPrice, price);
+	const filteredProducts = getFilteredProducts(
+		products,
+		category,
+		maxPrice,
+		price,
+    rating
+	);
 
 	useEffect(() => {
 		(async () => {
@@ -31,11 +37,10 @@ export const ProductPage = () => {
 							description={product.description}
 							price={product.price}
 							discount={product.discount}
+							image={product.image}
+              rating={product.rating}
 						>
 							<button className="btn bg-blue rounded">Add to Cart</button>
-							<button className="btn bg-blue rounded" disabled>
-								Go to Cart
-							</button>
 						</EcommerceCard>
 					))}
 				</div>

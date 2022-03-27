@@ -1,20 +1,26 @@
 import {
 	CATEGORY_FILTER_COFFEE,
 	CATEGORY_INSTANT_COFFEE,
-	CATEGORY_TEA_BLEND,
+	CATEGORY_EXPRESSO,
 	CLEAR_FILTERS,
 	FILTER_BY_CATEGORY,
 	FILTER_BY_PRICE,
 	PRICE_HIGH_TO_LOW,
 	PRICE_LOW_TO_HIGH,
-	SORT_BY_PRICE
+	SORT_BY_PRICE,
+	CATEGORY_MUG,
+	FILTER_BY_RATING,
+	RATING_4,
+	RATING_3,
+	RATING_2,
+	RATING_1
 } from '../constants/filter-constants';
 import { useProduct } from '../context/product-context';
 import './ProductFilter.css';
 
 function ProductFilter() {
 	const { filters, dispatch } = useProduct();
-	const { category, maxPrice, price } = filters;
+	const { category, maxPrice, price, rating } = filters;
 
 	return (
 		<aside className="aside-nav filter-container">
@@ -34,18 +40,18 @@ function ProductFilter() {
 				<ul className="filter-list price-range-labels">
 					<li>100</li>
 					<li>400</li>
-					<li>800</li>
+					<li>900</li>
 				</ul>
 				<input
 					type="range"
 					min="100"
-					max="800"
+					max="900"
 					onChange={e => {
 						dispatch({ type: FILTER_BY_PRICE, payload: e.target.value });
 					}}
 					value={maxPrice || 100}
 					className="price-range-slider"
-					step="10"
+					step="50"
 				/>
 			</div>
 			<div className="filter-type-container">
@@ -93,13 +99,30 @@ function ProductFilter() {
 								onChange={() => {
 									dispatch({
 										type: FILTER_BY_CATEGORY,
-										payload: CATEGORY_TEA_BLEND
+										payload: CATEGORY_EXPRESSO
 									});
 								}}
-								checked={category.includes(CATEGORY_TEA_BLEND)}
+								checked={category.includes(CATEGORY_EXPRESSO)}
 							/>
 							<div className="checkbox-icon"></div>
-							Tea Blend
+							Expresso
+						</label>
+					</li>
+					<li>
+						<label className="checkbox">
+							<input
+								type="checkbox"
+								className="checkbox-input"
+								onChange={() => {
+									dispatch({
+										type: FILTER_BY_CATEGORY,
+										payload: CATEGORY_MUG
+									});
+								}}
+								checked={category.includes(CATEGORY_MUG)}
+							/>
+							<div className="checkbox-icon"></div>
+							Coffee Mugs
 						</label>
 					</li>
 				</ul>
@@ -109,33 +132,58 @@ function ProductFilter() {
 				<ul className="filter-list">
 					<li>
 						<label className="radio">
-							<input type="radio" name="rating" className="radio-input" />
+							<input
+								type="radio"
+								name="rating"
+								className="radio-input"
+								onChange={() => {
+									dispatch({ type: FILTER_BY_RATING, payload: RATING_4 });
+								}}
+								checked={rating && rating === RATING_4}
+							/>
 							<div className="radio-icon"></div>4 star & above
 						</label>
 					</li>
 					<li>
 						<label className="radio">
-							<input type="radio" name="rating" className="radio-input" />
+							<input
+								type="radio"
+								name="rating"
+								className="radio-input"
+								onChange={() => {
+									dispatch({ type: FILTER_BY_RATING, payload: RATING_3 });
+								}}
+								checked={rating && rating === RATING_3}
+							/>
 							<div className="radio-icon"></div>3 star & above
 						</label>
 					</li>
 					<li>
 						<label className="radio">
-							<input type="radio" name="rating" className="radio-input" />
+							<input
+								type="radio"
+								name="rating"
+								className="radio-input"
+								onChange={() => {
+									dispatch({ type: FILTER_BY_RATING, payload: RATING_2 });
+								}}
+								checked={rating && rating === RATING_2}
+							/>
 							<div className="radio-icon"></div>2 star & above
 						</label>
 					</li>
 					<li>
 						<label className="radio">
-							<input type="radio" name="rating" className="radio-input" />
+							<input
+								type="radio"
+								name="rating"
+								className="radio-input"
+								onChange={() => {
+									dispatch({ type: FILTER_BY_RATING, payload: RATING_1 });
+								}}
+								checked={rating && rating === RATING_1}
+							/>
 							<div className="radio-icon"></div>1 star & above
-						</label>
-					</li>
-					<li>
-						<label className="radio">
-							<input type="radio" name="rating" className="radio-input" />
-							<div className="radio-icon"></div>
-							Unrated
 						</label>
 					</li>
 				</ul>

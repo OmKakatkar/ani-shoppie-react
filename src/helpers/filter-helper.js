@@ -1,6 +1,10 @@
 import {
 	PRICE_HIGH_TO_LOW,
-	PRICE_LOW_TO_HIGH
+	PRICE_LOW_TO_HIGH,
+	RATING_1,
+	RATING_2,
+	RATING_3,
+	RATING_4
 } from '../constants/filter-constants';
 
 const sortByPrice = (productList, sortBy) => {
@@ -14,6 +18,24 @@ const sortByPrice = (productList, sortBy) => {
 				return productList;
 		}
 	}
+};
+
+const filterByRating = (productList, rating) => {
+	if (rating) {
+		switch (rating) {
+			case RATING_4:
+				return productList.filter(product => product.rating >= 4);
+			case RATING_3:
+				return productList.filter(product => product.rating >= 3);
+			case RATING_2:
+				return productList.filter(product => product.rating >= 2);
+			case RATING_1:
+				return productList.filter(product => product.rating >= 1);
+			default:
+				return productList;
+		}
+	}
+	return productList;
 };
 
 const filterByCategory = (productList, filterBy) => {
@@ -34,9 +56,14 @@ const getFilteredProducts = (
 	productList,
 	filterCategory,
 	filterPrice,
-	sortBy
+	sortBy,
+	rating
 ) => {
-	const productsFilteredByPrice = filterByPrice(productList, filterPrice);
+	const productsFilteredByRating = filterByRating(productList, rating);
+	const productsFilteredByPrice = filterByPrice(
+		productsFilteredByRating,
+		filterPrice
+	);
 	const productsFilteredByCategory = filterByCategory(
 		productsFilteredByPrice,
 		filterCategory
