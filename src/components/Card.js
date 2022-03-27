@@ -1,16 +1,21 @@
-import image from '../assets/images/coffee.jpg';
-
-function Card({ title, description, isImage, cls, children }) {
+import './Card.css';
+function Card({ title, description, isImage, cls, image, children }) {
+	function limitDescriptionChars(text) {
+		if (text.length > 55) {
+			return `${text.substring(0, 55)}...`;
+		}
+		return text;
+	}
 	return (
 		<article className={`card rounded ${cls}`}>
 			{isImage && (
-				<div>
+				<div className="container flex-container image-container">
 					<img src={image} alt="" />
 				</div>
 			)}
 			<div className="card-body">
-				<h3 className="text-huge">{title}</h3>
-				<p className="text-md">{description}</p>
+				<h3 className="text-huge card-title">{title}</h3>
+				<p className="text-md card-description">{limitDescriptionChars(description)}</p>
 				{children}
 			</div>
 		</article>
