@@ -1,4 +1,8 @@
 import {
+	CATEGORY_FILTER_COFFEE,
+	CATEGORY_INSTANT_COFFEE,
+	CATEGORY_TEA_BLEND,
+	FILTER_BY_CATEGORY,
 	PRICE_HIGH_TO_LOW,
 	PRICE_LOW_TO_HIGH,
 	SORT_BY_PRICE
@@ -8,7 +12,8 @@ import './ProductFilter.css';
 
 function ProductFilter() {
 	const { filters, dispatch } = useProduct();
-	const { price } = filters;
+	const { price, category } = filters;
+
 	return (
 		<aside className="aside-nav filter-container">
 			<div className="filter-head-container">
@@ -36,23 +41,53 @@ function ProductFilter() {
 				<ul className="filter-list">
 					<li>
 						<label className="checkbox">
-							<input type="checkbox" className="checkbox-input" />
+							<input
+								type="checkbox"
+								className="checkbox-input"
+								onChange={() => {
+									dispatch({
+										type: FILTER_BY_CATEGORY,
+										payload: CATEGORY_INSTANT_COFFEE
+									});
+								}}
+								checked={category.includes(CATEGORY_INSTANT_COFFEE)}
+							/>
 							<div className="checkbox-icon"></div>
 							Instant Coffee
 						</label>
 					</li>
 					<li>
 						<label className="checkbox">
-							<input type="checkbox" className="checkbox-input" />
+							<input
+								type="checkbox"
+								className="checkbox-input"
+								onChange={() => {
+									dispatch({
+										type: FILTER_BY_CATEGORY,
+										payload: CATEGORY_FILTER_COFFEE
+									});
+								}}
+								checked={category.includes(CATEGORY_FILTER_COFFEE)}
+							/>
 							<div className="checkbox-icon"></div>
 							Filter Coffee
 						</label>
 					</li>
 					<li>
 						<label className="checkbox">
-							<input type="checkbox" className="checkbox-input" />
+							<input
+								type="checkbox"
+								className="checkbox-input"
+								onChange={() => {
+									dispatch({
+										type: FILTER_BY_CATEGORY,
+										payload: CATEGORY_TEA_BLEND
+									});
+								}}
+								checked={category.includes(CATEGORY_TEA_BLEND)}
+							/>
 							<div className="checkbox-icon"></div>
-							Tea Blends
+							Tea Blend
 						</label>
 					</li>
 				</ul>
