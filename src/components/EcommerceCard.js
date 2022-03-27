@@ -1,28 +1,49 @@
+import { useState } from 'react';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useAuth } from '../context/auth-context';
+import { addToWishList, removeFromWishList } from '../util/product-request';
 import Card from './Card';
 import './EcommerceCard.css';
+import { useProduct } from '../context/product-context';
+import loader from '../assets/loaders/loader.gif';
 
-function EcommerceCard({
-	title,
-	description,
-	price,
-	discount,
-	isWishlist,
-	image,
-	rating,
-	children
-}) {
+function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();
+	const { wishList, setWishList } = useProduct();
+
+	const { title, description, price, discount, image, rating } = product;
+	const [isLoading, setIsLoading] = useState(false);
+	const checkItemInWishList = () =>
+		wishList.filter(wishListItem => wishListItem._id === product._id).length;
+
+	const toggleWishList = async () => {
+		try {
+			!isWishList && setIsLoading(true);
+			if (!checkItemInWishList()) {
+				const { data } = await addToWishList(user.token, product);
+				setWishList(data.wishlist);
+			} else {
+				const { data } = await removeFromWishList(user.token, product);
+				setWishList(data.wishlist);
+			}
+			!isWishList && setIsLoading(false);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	return (
 		<Card title={title} description={description} isImage image={image}>
 			{user.token && (
-				<button className="icon-btn">
+				<button
+					className="icon-btn"
+					onClick={() => toggleWishList()}
+					disabled={isLoading}
+				>
 					<FontAwesomeIcon
 						icon={faHeart}
-						className={`icon ${isWishlist && 'wishlist'}`}
+						className={`icon ${checkItemInWishList() && 'wishlist'}`}
 					/>
 				</button>
 			)}
@@ -42,6 +63,11 @@ function EcommerceCard({
 				{rating >= 5 && <span className="card-star-rating"></span>}
 			</div>
 			{children}
+			{isLoading && (
+				<div className="card-loader-container">
+					<img src={loader} alt="loader" className="card-loader"></img>
+				</div>
+			)}
 		</Card>
 	);
 }
