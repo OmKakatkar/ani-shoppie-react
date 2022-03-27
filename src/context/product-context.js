@@ -2,7 +2,8 @@ import { createContext, useState, useContext, useReducer } from 'react';
 import {
 	PRICE_LOW_TO_HIGH,
 	SORT_BY_PRICE,
-	FILTER_BY_CATEGORY
+	FILTER_BY_CATEGORY,
+	FILTER_BY_PRICE
 } from '../constants/filter-constants';
 
 const ProductContext = createContext();
@@ -30,13 +31,16 @@ const reducer = (state, action) => {
 				...state,
 				category: addCategory(state.category, action.payload)
 			};
+		case FILTER_BY_PRICE:
+			return { ...state, maxPrice: action.payload };
 		default:
 			return state;
 	}
 };
 const intialData = {
 	price: PRICE_LOW_TO_HIGH,
-	category: []
+	category: [],
+	maxPrice: ''
 };
 
 const ProductProvider = ({ children }) => {

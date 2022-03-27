@@ -23,8 +23,26 @@ const filterByCategory = (productList, filterBy) => {
 	return productList;
 };
 
-const getFilteredProducts = (productList, filterCategory, sortBy) => {
-	return sortByPrice(filterByCategory(productList, filterCategory), sortBy);
+const filterByPrice = (productList, maxPrice) => {
+	if (maxPrice.length) {
+		return productList.filter(product => product.price <= maxPrice);
+	}
+	return productList;
+};
+
+const getFilteredProducts = (
+	productList,
+	filterCategory,
+	filterPrice,
+	sortBy
+) => {
+	const productsFilteredByPrice = filterByPrice(productList, filterPrice);
+	const productsFilteredByCategory = filterByCategory(
+		productsFilteredByPrice,
+		filterCategory
+	);
+	const productsSortedByPrice = sortByPrice(productsFilteredByCategory, sortBy);
+	return productsSortedByPrice;
 };
 
 export { getFilteredProducts };

@@ -8,9 +8,9 @@ import './ProductPage.css';
 
 export const ProductPage = () => {
 	const { products, setProducts, filters } = useProduct();
-	const { price, category } = filters;
+	const { category, maxPrice, price } = filters;
 
-	const filteredProducts = getFilteredProducts(products, category, price);
+	const filteredProducts = getFilteredProducts(products, category, maxPrice, price);
 
 	useEffect(() => {
 		(async () => {

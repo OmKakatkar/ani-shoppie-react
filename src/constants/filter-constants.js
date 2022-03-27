@@ -1,4 +1,4 @@
-// Price Constants
+// Sort Constants
 const SORT_BY_PRICE = 'SORT_BY_PRICE';
 const PRICE_HIGH_TO_LOW = 'PRICE_HIGH_TO_LOW';
 const PRICE_LOW_TO_HIGH = 'PRICE_LOW_TO_HIGH';
@@ -9,6 +9,9 @@ const CATEGORY_INSTANT_COFFEE = 'Instant Coffee';
 const CATEGORY_FILTER_COFFEE = 'Filter Coffee';
 const CATEGORY_TEA_BLEND = 'Tea Blend';
 
+// Price Filter Constants
+const FILTER_BY_PRICE = 'FILTER_BY_PRICE';
+
 export {
 	SORT_BY_PRICE,
 	PRICE_HIGH_TO_LOW,
@@ -16,5 +19,6 @@ export {
 	FILTER_BY_CATEGORY,
 	CATEGORY_INSTANT_COFFEE,
 	CATEGORY_FILTER_COFFEE,
-	CATEGORY_TEA_BLEND
+	CATEGORY_TEA_BLEND,
+	FILTER_BY_PRICE
 };

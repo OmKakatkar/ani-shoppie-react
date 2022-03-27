@@ -3,6 +3,7 @@ import {
 	CATEGORY_INSTANT_COFFEE,
 	CATEGORY_TEA_BLEND,
 	FILTER_BY_CATEGORY,
+	FILTER_BY_PRICE,
 	PRICE_HIGH_TO_LOW,
 	PRICE_LOW_TO_HIGH,
 	SORT_BY_PRICE
@@ -12,7 +13,7 @@ import './ProductFilter.css';
 
 function ProductFilter() {
 	const { filters, dispatch } = useProduct();
-	const { price, category } = filters;
+	const { category, maxPrice, price } = filters;
 
 	return (
 		<aside className="aside-nav filter-container">
@@ -23,15 +24,18 @@ function ProductFilter() {
 			<div className="filter-type-container">
 				<h5 className="text-lg">Price</h5>
 				<ul className="filter-list price-range-labels">
-					<li>50</li>
+					<li>100</li>
 					<li>400</li>
 					<li>800</li>
 				</ul>
 				<input
 					type="range"
-					min="50"
+					min="100"
 					max="800"
-					value="400"
+					onChange={e => {
+						dispatch({ type: FILTER_BY_PRICE, payload: e.target.value });
+					}}
+          value={maxPrice || 100}
 					className="price-range-slider"
 					step="10"
 				/>
