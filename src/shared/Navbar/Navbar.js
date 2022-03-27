@@ -7,9 +7,11 @@ import {
 import './Navbar.css';
 import { useAuth } from '../../context/auth-context';
 import { Link } from 'react-router-dom';
+import { useProduct } from '../../context/product-context';
 
 export const Navbar = () => {
 	const { user, handleLogout } = useAuth();
+	const { wishList } = useProduct();
 
 	return (
 		<nav className="nav fix-top ecom-nav home-nav">
@@ -65,10 +67,15 @@ export const Navbar = () => {
 				</li>
 				<li className="nav-link">
 					{user.token && (
-						<Link to="wishlist" className="flex-container flex-column icon-badge">
+						<Link
+							to="wishlist"
+							className="flex-container flex-column icon-badge"
+						>
 							<FontAwesomeIcon icon={faHeart} className="text-lg" />
 							<span className="text-sm">Wishlist</span>
-							<span className="badge">11</span>
+							{wishList.length > 0 && (
+								<span className="badge">{wishList.length}</span>
+							)}
 						</Link>
 					)}
 					{!user.token && (
