@@ -2,6 +2,7 @@ import {
 	CATEGORY_FILTER_COFFEE,
 	CATEGORY_INSTANT_COFFEE,
 	CATEGORY_TEA_BLEND,
+	CLEAR_FILTERS,
 	FILTER_BY_CATEGORY,
 	FILTER_BY_PRICE,
 	PRICE_HIGH_TO_LOW,
@@ -19,7 +20,14 @@ function ProductFilter() {
 		<aside className="aside-nav filter-container">
 			<div className="filter-head-container">
 				<h4 className="filter-heading text-xlg">Filters</h4>
-				<button className="filter-clear">Clear All</button>
+				<button
+					className="filter-clear"
+					onClick={() => {
+						dispatch({ type: CLEAR_FILTERS });
+					}}
+				>
+					Clear All
+				</button>
 			</div>
 			<div className="filter-type-container">
 				<h5 className="text-lg">Price</h5>
@@ -35,7 +43,7 @@ function ProductFilter() {
 					onChange={e => {
 						dispatch({ type: FILTER_BY_PRICE, payload: e.target.value });
 					}}
-          value={maxPrice || 100}
+					value={maxPrice || 100}
 					className="price-range-slider"
 					step="10"
 				/>

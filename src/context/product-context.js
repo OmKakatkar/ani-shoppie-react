@@ -3,7 +3,8 @@ import {
 	PRICE_LOW_TO_HIGH,
 	SORT_BY_PRICE,
 	FILTER_BY_CATEGORY,
-	FILTER_BY_PRICE
+	FILTER_BY_PRICE,
+	CLEAR_FILTERS
 } from '../constants/filter-constants';
 
 const ProductContext = createContext();
@@ -16,8 +17,16 @@ const removeCategory = (categoryArray, category) => {
 	return categoryArray.filter(c => c !== category);
 };
 
+const intialData = {
+	price: PRICE_LOW_TO_HIGH,
+	category: [],
+	maxPrice: ''
+};
+
 const reducer = (state, action) => {
 	switch (action.type) {
+		case CLEAR_FILTERS:
+			return intialData;
 		case SORT_BY_PRICE:
 			return { ...state, price: action.payload };
 		case FILTER_BY_CATEGORY:
@@ -36,11 +45,6 @@ const reducer = (state, action) => {
 		default:
 			return state;
 	}
-};
-const intialData = {
-	price: PRICE_LOW_TO_HIGH,
-	category: [],
-	maxPrice: ''
 };
 
 const ProductProvider = ({ children }) => {
