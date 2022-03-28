@@ -21,7 +21,7 @@ function EcommerceCard({ isWishList, product, children }) {
 
 	const toggleWishList = async () => {
 		try {
-			!isWishList && setIsLoading(true);
+			setIsLoading(true);
 			if (!checkItemInWishList()) {
 				const { data } = await addToWishList(user.token, product);
 				setWishList(data.wishlist);
