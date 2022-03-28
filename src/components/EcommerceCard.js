@@ -84,20 +84,30 @@ function EcommerceCard({ isWishList, product, children }) {
 				{rating >= 5 && <span className="card-star-rating"></span>}
 			</div>
 			{children}
-			{!checkItemInArray(cart, product) && (
-				<button className="btn bg-blue rounded" onClick={insertIntoCart}>
-					Add to Cart
-				</button>
+			{user.token && (
+				<>
+					{!checkItemInArray(cart, product) && (
+						<button className="btn bg-blue rounded" onClick={insertIntoCart}>
+							Add to Cart
+						</button>
+					)}
+					{checkItemInArray(cart, product) && (
+						<Link to="/cart" className="flex">
+							<button className="btn bg-green rounded">Show in Cart</button>
+						</Link>
+					)}
+
+					{isLoading && (
+						<div className="card-loader-container">
+							<img src={loader} alt="loader" className="card-loader"></img>
+						</div>
+					)}
+				</>
 			)}
-			{checkItemInArray(cart, product) && (
-				<Link to="/cart" className="flex">
-					<button className="btn bg-green rounded">Show in Cart</button>
+			{!user.token && (
+				<Link to="/login" className="flex">
+					<button className="btn bg-blue rounded">Add to Cart</button>
 				</Link>
-			)}
-			{isLoading && (
-				<div className="card-loader-container">
-					<img src={loader} alt="loader" className="card-loader"></img>
-				</div>
 			)}
 		</Card>
 	);
