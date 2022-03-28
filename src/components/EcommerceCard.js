@@ -3,21 +3,44 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth } from '../context/auth-context';
-import { addToWishList, removeFromWishList } from '../util/product-request';
+import {
+	addToWishList,
+	removeFromWishList,
+	addToCart
+} from '../util/product-request';
 import { useProduct } from '../context/product-context';
 import Card from './Card';
 
 import loader from '../assets/loaders/loader.gif';
 import './EcommerceCard.css';
+import { Link } from 'react-router-dom';
 
 function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();
-	const { wishList, setWishList } = useProduct();
+	const { wishList, setWishList, cart, setCart } = useProduct();
 
 	const { title, description, price, discount, image, rating } = product;
 	const [isLoading, setIsLoading] = useState(false);
 	const checkItemInWishList = () =>
-		wishList.filter(wishListItem => wishListItem._id === product._id).length;
+		Boolean(
+			wishList.filter(wishListItem => wishListItem._id === product._id).length
+		);
+
+	const checkItemInCart = () =>
+		Boolean(cart.filter(cartItem => cartItem._id === product._id).length);
+
+	const insertIntoCart = async () => {
+		try {
+			setIsLoading(true);
+			if (!checkItemInCart()) {
+				const { data } = await addToCart(user.token, product);
+				setCart(data.cart);
+			}
+			setIsLoading(false);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	const toggleWishList = async () => {
 		try {
@@ -65,6 +88,16 @@ function EcommerceCard({ isWishList, product, children }) {
 				{rating >= 5 && <span className="card-star-rating"></span>}
 			</div>
 			{children}
+			{!checkItemInCart() && (
+				<button className="btn bg-blue rounded" onClick={insertIntoCart}>
+					Add to Cart
+				</button>
+			)}
+			{checkItemInCart() && (
+				<Link to="/cart" className="flex">
+					<button className="btn bg-green rounded">Show in Cart</button>
+				</Link>
+			)}
 			{isLoading && (
 				<div className="card-loader-container">
 					<img src={loader} alt="loader" className="card-loader"></img>
