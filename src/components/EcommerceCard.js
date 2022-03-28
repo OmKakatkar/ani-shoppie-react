@@ -3,26 +3,43 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAuth } from '../context/auth-context';
-import { addToWishList, removeFromWishList } from '../util/product-request';
+import {
+	addToWishList,
+	removeFromWishList,
+	addToCart
+} from '../util/product-request';
 import { useProduct } from '../context/product-context';
 import Card from './Card';
 
 import loader from '../assets/loaders/loader.gif';
 import './EcommerceCard.css';
+import { Link } from 'react-router-dom';
+import { checkItemInArray } from '../util/utilities';
 
 function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();
-	const { wishList, setWishList } = useProduct();
+	const { wishList, setWishList, cart, setCart } = useProduct();
 
 	const { title, description, price, discount, image, rating } = product;
 	const [isLoading, setIsLoading] = useState(false);
-	const checkItemInWishList = () =>
-		wishList.filter(wishListItem => wishListItem._id === product._id).length;
+
+	const insertIntoCart = async () => {
+		try {
+			setIsLoading(true);
+			if (!checkItemInArray(cart, product)) {
+				const { data } = await addToCart(user.token, product);
+				setCart(data.cart);
+			}
+			setIsLoading(false);
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	const toggleWishList = async () => {
 		try {
 			setIsLoading(true);
-			if (!checkItemInWishList()) {
+			if (!checkItemInArray(wishList, product)) {
 				const { data } = await addToWishList(user.token, product);
 				setWishList(data.wishlist);
 			} else {
@@ -45,7 +62,9 @@ function EcommerceCard({ isWishList, product, children }) {
 				>
 					<FontAwesomeIcon
 						icon={faHeart}
-						className={`icon ${checkItemInWishList() && 'wishlist'}`}
+						className={`icon ${
+							checkItemInArray(wishList, product) && 'wishlist'
+						}`}
 					/>
 				</button>
 			)}
@@ -65,10 +84,30 @@ function EcommerceCard({ isWishList, product, children }) {
 				{rating >= 5 && <span className="card-star-rating"></span>}
 			</div>
 			{children}
-			{isLoading && (
-				<div className="card-loader-container">
-					<img src={loader} alt="loader" className="card-loader"></img>
-				</div>
+			{user.token && (
+				<>
+					{!checkItemInArray(cart, product) && (
+						<button className="btn bg-blue rounded" onClick={insertIntoCart}>
+							Add to Cart
+						</button>
+					)}
+					{checkItemInArray(cart, product) && (
+						<Link to="/cart" className="flex">
+							<button className="btn bg-green rounded">Show in Cart</button>
+						</Link>
+					)}
+
+					{isLoading && (
+						<div className="card-loader-container">
+							<img src={loader} alt="loader" className="card-loader"></img>
+						</div>
+					)}
+				</>
+			)}
+			{!user.token && (
+				<Link to="/login" className="flex">
+					<button className="btn bg-blue rounded">Add to Cart</button>
+				</Link>
 			)}
 		</Card>
 	);

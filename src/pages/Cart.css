@@ -1,0 +1,10 @@
+.cart-main {
+  margin-top: 7rem;
+  margin-right: 45rem;
+  padding-top: 2rem;
+}
+
+.cart-empty {
+  min-width: 20rem;
+  min-height: 20rem;
+}

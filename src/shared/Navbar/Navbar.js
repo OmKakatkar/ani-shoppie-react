@@ -11,7 +11,11 @@ import { useProduct } from '../../context/product-context';
 
 export const Navbar = () => {
 	const { user, handleLogout } = useAuth();
-	const { wishList } = useProduct();
+	const { wishList, cart } = useProduct();
+
+	const calculateItemsInCart = () => {
+		return cart.reduce((totalItems, { qty }) => totalItems + qty, 0);
+	};
 
 	return (
 		<nav className="nav fix-top ecom-nav home-nav">
@@ -55,7 +59,9 @@ export const Navbar = () => {
 						<Link to="cart" className="flex-container flex-column icon-badge">
 							<FontAwesomeIcon icon={faShoppingCart} className="text-lg" />
 							<span className="text-sm">My Cart</span>
-							<span className="badge">5</span>
+							{calculateItemsInCart() > 0 && (
+								<span className="badge">{calculateItemsInCart()}</span>
+							)}
 						</Link>
 					)}
 					{!user.token && (
