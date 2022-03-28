@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { API_ALL_PRODUCTS, API_WISHLIST } from '../constants/api-constants';
+import {
+	API_ALL_PRODUCTS,
+	API_CART,
+	API_WISHLIST
+} from '../constants/api-constants';
 
 // API functions for Product Listing
 const getProducts = async () => await axios.get(API_ALL_PRODUCTS);
@@ -30,4 +34,29 @@ const removeFromWishList = async (authToken, product) =>
 		}
 	});
 
-export { getProducts, getWishlist, addToWishList, removeFromWishList };
+// API functions for Cart
+const getCart = async authToken =>
+	await axios.get(API_CART, {
+		headers: {
+			authorization: authToken
+		}
+	});
+
+const addToCart = async (authToken, product) =>
+	await axios.post(
+		API_CART,
+		{ product },
+		{
+			headers: {
+				authorization: authToken
+			}
+		}
+	);
+export {
+	getProducts,
+	getWishlist,
+	addToWishList,
+	removeFromWishList,
+	getCart,
+	addToCart
+};

@@ -7,3 +7,6 @@ export const API_ALL_PRODUCTS = '/api/products';
 
 // Wishlist Constants
 export const API_WISHLIST = '/api/user/wishlist';
+
+// Cart Constants
+export const API_CART = '/api/user/cart';
