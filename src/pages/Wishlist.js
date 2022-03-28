@@ -13,9 +13,7 @@ export const Wishlist = () => {
 						key={wishListItem._id}
 						product={wishListItem}
 						isWishList
-					>
-						<button className="btn bg-blue rounded">Move to Cart</button>
-					</EcommerceCard>
+					/>
 				))}
 			</div>
 		</main>

@@ -32,9 +32,7 @@ export const ProductPage = () => {
 				<h1 className="text-xhuge text-center">Products</h1>
 				<div className="container flex-container">
 					{filteredProducts.map(product => (
-						<EcommerceCard key={product._id} product={product}>
-							<button className="btn bg-blue rounded">Add to Cart</button>
-						</EcommerceCard>
+						<EcommerceCard key={product._id} product={product}></EcommerceCard>
 					))}
 				</div>
 			</main>
