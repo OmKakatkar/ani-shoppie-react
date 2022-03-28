@@ -54,8 +54,16 @@ const reducer = (state, action) => {
 const ProductProvider = ({ children }) => {
 	const [filters, dispatch] = useReducer(reducer, intialData);
 	const [products, setProducts] = useState([]);
+	const [wishList, setWishList] = useState([]);
 
-	const productContextValue = { filters, dispatch, products, setProducts };
+	const productContextValue = {
+		filters,
+		dispatch,
+		products,
+		setProducts,
+		wishList,
+		setWishList
+	};
 	return (
 		<ProductContext.Provider value={productContextValue}>
 			{children}

@@ -15,7 +15,7 @@ export const ProductPage = () => {
 		category,
 		maxPrice,
 		price,
-    rating
+		rating
 	);
 
 	useEffect(() => {
@@ -24,6 +24,7 @@ export const ProductPage = () => {
 			setProducts(data.products);
 		})();
 	}, [setProducts]);
+
 	return (
 		<>
 			<ProductFilter />
@@ -31,15 +32,7 @@ export const ProductPage = () => {
 				<h1 className="text-xhuge text-center">Products</h1>
 				<div className="container flex-container">
 					{filteredProducts.map(product => (
-						<EcommerceCard
-							key={product._id}
-							title={product.title}
-							description={product.description}
-							price={product.price}
-							discount={product.discount}
-							image={product.image}
-              rating={product.rating}
-						>
+						<EcommerceCard key={product._id} product={product}>
 							<button className="btn bg-blue rounded">Add to Cart</button>
 						</EcommerceCard>
 					))}

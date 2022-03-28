@@ -3,6 +3,7 @@ import './App.css';
 import { useAuth } from './context/auth-context';
 import { Home, ProductPage, Login, SignUp, Wishlist, Cart } from './pages';
 import { Navbar } from './shared';
+import MockAPI from './mock/MockAPI';
 
 function App() {
 	const { user } = useAuth();
@@ -11,6 +12,7 @@ function App() {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/mockman" element={<MockAPI />} />
 				<Route path="products" element={<ProductPage />} />
 
 				{!user.token && (
