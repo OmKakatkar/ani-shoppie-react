@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { useAuth } from '../context/auth-context';
 import { addToWishList, removeFromWishList } from '../util/product-request';
-import Card from './Card';
-import './EcommerceCard.css';
 import { useProduct } from '../context/product-context';
+import Card from './Card';
+
 import loader from '../assets/loaders/loader.gif';
+import './EcommerceCard.css';
 
 function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();
