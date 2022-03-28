@@ -52,11 +52,36 @@ const addToCart = async (authToken, product) =>
 			}
 		}
 	);
+
+const removeFromCart = async (authToken, product) =>
+	await axios.delete(`${API_CART}/${product._id}`, {
+		headers: {
+			authorization: authToken
+		}
+	});
+
+const changeCartQuantity = async (authToken, product, type) =>
+	await axios.post(
+		`${API_CART}/${product._id}`,
+		{
+			action: {
+				type
+			}
+		},
+		{
+			headers: {
+				authorization: authToken
+			}
+		}
+	);
+
 export {
 	getProducts,
 	getWishlist,
 	addToWishList,
 	removeFromWishList,
 	getCart,
-	addToCart
+	addToCart,
+	removeFromCart,
+	changeCartQuantity
 };

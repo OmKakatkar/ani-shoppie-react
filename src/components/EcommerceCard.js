@@ -14,6 +14,7 @@ import Card from './Card';
 import loader from '../assets/loaders/loader.gif';
 import './EcommerceCard.css';
 import { Link } from 'react-router-dom';
+import { checkItemInArray } from '../util/utilities';
 
 function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();
@@ -21,18 +22,11 @@ function EcommerceCard({ isWishList, product, children }) {
 
 	const { title, description, price, discount, image, rating } = product;
 	const [isLoading, setIsLoading] = useState(false);
-	const checkItemInWishList = () =>
-		Boolean(
-			wishList.filter(wishListItem => wishListItem._id === product._id).length
-		);
-
-	const checkItemInCart = () =>
-		Boolean(cart.filter(cartItem => cartItem._id === product._id).length);
 
 	const insertIntoCart = async () => {
 		try {
 			setIsLoading(true);
-			if (!checkItemInCart()) {
+			if (!checkItemInArray(cart, product)) {
 				const { data } = await addToCart(user.token, product);
 				setCart(data.cart);
 			}
@@ -45,7 +39,7 @@ function EcommerceCard({ isWishList, product, children }) {
 	const toggleWishList = async () => {
 		try {
 			setIsLoading(true);
-			if (!checkItemInWishList()) {
+			if (!checkItemInArray(wishList, product)) {
 				const { data } = await addToWishList(user.token, product);
 				setWishList(data.wishlist);
 			} else {
@@ -68,7 +62,9 @@ function EcommerceCard({ isWishList, product, children }) {
 				>
 					<FontAwesomeIcon
 						icon={faHeart}
-						className={`icon ${checkItemInWishList() && 'wishlist'}`}
+						className={`icon ${
+							checkItemInArray(wishList, product) && 'wishlist'
+						}`}
 					/>
 				</button>
 			)}
@@ -88,12 +84,12 @@ function EcommerceCard({ isWishList, product, children }) {
 				{rating >= 5 && <span className="card-star-rating"></span>}
 			</div>
 			{children}
-			{!checkItemInCart() && (
+			{!checkItemInArray(cart, product) && (
 				<button className="btn bg-blue rounded" onClick={insertIntoCart}>
 					Add to Cart
 				</button>
 			)}
-			{checkItemInCart() && (
+			{checkItemInArray(cart, product) && (
 				<Link to="/cart" className="flex">
 					<button className="btn bg-green rounded">Show in Cart</button>
 				</Link>

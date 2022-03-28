@@ -1,6 +1,6 @@
-import './CartSummary.css'
+import './CartSummary.css';
 
-function CartSummary({subTotalPrice ,totalPrice}) {
+function CartSummary({ subTotalPrice }) {
 	return (
 		<aside className="cart-summary">
 			<header>Order Summary</header>
@@ -10,15 +10,17 @@ function CartSummary({subTotalPrice ,totalPrice}) {
 			</div>
 			<div className="cart-summary-row">
 				<span> Shipping </span>
-				<span> Rs 50 </span>
+				<span> Rs {subTotalPrice ? 50 : 0} </span>
 			</div>
 			<hr />
 			<div className="cart-summary-row">
 				<span> Total </span>
-				<span> Rs {(subTotalPrice + 50) || 0} </span>
+				<span> Rs {subTotalPrice ? subTotalPrice + 50 : 0} </span>
 			</div>
 			<div className="cart-summary-row">
-				<button className="btn bg-green rounded summary-checkout">Checkout</button>
+				<button className="btn bg-green rounded summary-checkout">
+					Checkout
+				</button>
 			</div>
 		</aside>
 	);
