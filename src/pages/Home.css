@@ -33,8 +33,31 @@
 	margin: 4rem 0;
 }
 
+.home-card {
+	min-width: 40rem;
+}
+
+.home-card .image-container {
+	justify-content: stretch;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.home-card .image-container img {
+  width: 100%;
+}
+
 .card a {
 	color: inherit;
+}
+
+.home-card .card-title {
+  height: 1.5em;
+}
+
+.home-card .card-description {
+  height: 5em;
 }
 
 /* Footer */

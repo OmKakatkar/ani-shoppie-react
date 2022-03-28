@@ -2,6 +2,9 @@
 export const API_LOGIN = '/api/auth/login';
 export const API_SIGNUP = '/api/auth/signup';
 
+// Category Constants
+export const API_CATEGORIES = '/api/categories'
+
 // Product Listing Constants
 export const API_ALL_PRODUCTS = '/api/products';
 
