@@ -1,28 +1,37 @@
-import './CartCard.css'
-import image from '../assets/images/coffee.jpg'
+import './CartCard.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faSubtract } from '@fortawesome/free-solid-svg-icons';
 
-function CartCard({title, price, quantity}) {
+function CartCard({ product }) {
+	const { title, price, qty, image, discount } = product;
+
 	return (
-		<article className="card card-horizontal flex rounded ecom-card">
-			<div className="image flex">
+		<article className='card rounded'>
+			<div className="container flex-container image-container">
 				<img src={image} alt="" />
 			</div>
 			<div className="card-body">
-				<h3 className="text-xlg">{title}</h3>
-				<div className="price">
-					<span className="discount-price text-xsm">Rs. {price}</span>
+				<h3 className="text-huge card-title text-center">{title}</h3>
+				<div className="quantity-container">
+					<button className="btn circular bd-blue">
+						<FontAwesomeIcon icon={faAdd} />
+					</button>
+					<span className='text-huge'>{qty}</span>
+					<button className="btn circular bd-blue">
+						<FontAwesomeIcon icon={faSubtract} />
+					</button>
 				</div>
-				<div className="order-qty-container">
-					<button className="btn font-bold"><FontAwesomeIcon icon={faSubtract}/></button>
-					<div className="order-quantity">{quantity}</div>
-					<button className="btn font-bold"><FontAwesomeIcon icon={faAdd}/></button>
+				<div className="price text-center">
+					<span className="discount-price">
+						Rs. {Math.round(price - (price * discount) / 100)}
+					</span>
+					<span className="original-price">Rs. {price}</span>
+					<span className="offer">{discount}% off</span>
 				</div>
-				<div className="button-container">
-					<button className="btn rounded bg-blue">Move to Wishlist</button>
-					<button className="btn rounded bd-red">Remove from Cart</button>
-				</div>
+       
+        <button className="btn bg-red rounded">Remove from Cart</button>
+        <button className="btn bg-blue rounded">Move to Wishlist</button>
+       
 			</div>
 		</article>
 	);
