@@ -1,9 +1,14 @@
 import axios from 'axios';
 import {
+  API_CATEGORIES,
 	API_ALL_PRODUCTS,
 	API_CART,
 	API_WISHLIST
 } from '../constants/api-constants';
+
+
+// API functions for Categories
+const getCategories = async() => await axios.get(API_CATEGORIES)
 
 // API functions for Product Listing
 const getProducts = async () => await axios.get(API_ALL_PRODUCTS);
@@ -76,6 +81,7 @@ const changeCartQuantity = async (authToken, product, type) =>
 	);
 
 export {
+  getCategories,
 	getProducts,
 	getWishlist,
 	addToWishList,
