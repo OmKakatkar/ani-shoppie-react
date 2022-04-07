@@ -27,7 +27,9 @@ An ecommerce app for coffee and more.
 ![image](https://user-images.githubusercontent.com/68369994/161107995-53b8aa4e-19c0-4833-a425-3dff7b4ff3b4.png)
 ![image](https://user-images.githubusercontent.com/68369994/161108110-25d67386-85a4-4762-8321-9fb5b3041420.png)
 ![image](https://user-images.githubusercontent.com/68369994/161108190-965a3360-31fd-4629-b72d-dd7a1494ddd5.png)
-![ani-shoppie-demo](https://user-images.githubusercontent.com/68369994/162191076-2f778bc6-3268-42d0-a5c9-2c0e29d03c81.gif)
+
+https://user-images.githubusercontent.com/68369994/162213109-24dfa161-7d83-4d83-801a-73586b68d486.mp4
+
 
 ## Tech Stack
 
