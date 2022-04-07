@@ -6,7 +6,6 @@ import { Footer } from '../shared';
 import { getCategories } from '../util/product-request';
 import Card from '../components/Card';
 
-import loader from '../assets/loaders/loader.gif';
 import './Home.css';
 
 export const Home = () => {
@@ -31,7 +30,8 @@ export const Home = () => {
 				<div className="hero flex-container flex-column">
 					<h1 className="hero-heading">Coffee For All</h1>
 					<p className="hero-description">
-						Select from our wide range of coffee brands handpicked by our experts. We also have coffee mugs for you coffee lovers.
+						Select from our wide range of coffee brands handpicked by our
+						experts. We also have coffee mugs for you coffee lovers.
 					</p>
 					<Link to="products" className="btn rounded bg-green hero-btn">
 						Buy Now!
@@ -76,7 +76,7 @@ export const Home = () => {
 			{isLoading && (
 				<div className="home-loader card-loader-container">
 					<img
-						src={loader}
+						src="https://res.cloudinary.com/dwubqdebj/image/upload/c_scale,w_500/v1649329000/ani-watch/loader_ixolpe.gif"
 						alt="loader"
 						className="card-loader"
 					></img>

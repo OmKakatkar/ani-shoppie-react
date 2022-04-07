@@ -11,7 +11,6 @@ import {
 import { useProduct } from '../context/product-context';
 import Card from './Card';
 
-import loader from '../assets/loaders/loader.gif';
 import './EcommerceCard.css';
 import { Link } from 'react-router-dom';
 import { checkItemInArray } from '../util/utilities';
@@ -99,7 +98,11 @@ function EcommerceCard({ isWishList, product, children }) {
 
 					{isLoading && (
 						<div className="card-loader-container">
-							<img src={loader} alt="loader" className="card-loader"></img>
+							<img
+								src="https://res.cloudinary.com/dwubqdebj/image/upload/c_scale,w_500/v1649329000/ani-watch/loader_ixolpe.gif"
+								alt="loader"
+								className="card-loader"
+							></img>
 						</div>
 					)}
 				</>
