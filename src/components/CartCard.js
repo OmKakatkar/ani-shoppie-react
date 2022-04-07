@@ -10,7 +10,6 @@ import {
 	changeCartQuantity,
 	removeFromCart
 } from '../util/product-request';
-import loader from '../assets/loaders/loader.gif';
 import './CartCard.css';
 
 function CartCard({ product }) {
@@ -104,7 +103,11 @@ function CartCard({ product }) {
 
 			{isLoading && (
 				<div className="card-loader-container">
-					<img src={loader} alt="loader" className="card-loader"></img>
+					<img
+						src="https://res.cloudinary.com/dwubqdebj/image/upload/c_scale,w_500/v1649329000/ani-watch/loader_ixolpe.gif"
+						alt="loader"
+						className="card-loader"
+					></img>
 				</div>
 			)}
 		</article>

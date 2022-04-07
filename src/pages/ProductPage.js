@@ -4,7 +4,6 @@ import ProductFilter from '../components/ProductFilter';
 import { getProducts } from '../util/product-request';
 import { useProduct } from '../context/product-context';
 import { getFilteredProducts } from '../helpers/filter-helper';
-import loader from '../assets/loaders/loader.gif';
 import './ProductPage.css';
 
 export const ProductPage = () => {
@@ -45,7 +44,11 @@ export const ProductPage = () => {
 				</div>
 				{isLoading && (
 					<div className="home-loader card-loader-container">
-						<img src={loader} alt="loader" className="card-loader"></img>
+						<img
+							src="https://res.cloudinary.com/dwubqdebj/image/upload/c_scale,w_500/v1649329000/ani-watch/loader_ixolpe.gif"
+							alt="loader"
+							className="card-loader"
+						></img>
 					</div>
 				)}
 			</main>

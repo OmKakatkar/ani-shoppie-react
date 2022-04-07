@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/auth-context';
 import './Auth.css';
 
@@ -12,10 +12,12 @@ export const SignUp = () => {
 	const { handleSignUp } = useAuth();
 	const [signUpData, setSignUpData] = useState(initialSignUpData);
 	const [acceptTnC, setAcceptTnC] = useState(false);
+	const navigate = useNavigate();
 
 	const handleSubmit = async e => {
 		e.preventDefault();
 		await handleSignUp(signUpData);
+		navigate('/products');
 	};
 
 	const handleChange = e => {

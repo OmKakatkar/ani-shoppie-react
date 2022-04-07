@@ -6,7 +6,7 @@
 .hero {
 	min-height: 100vh;
 	background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 1)),
-		url('https://source.unsplash.com/TD4DBagg2wE/1600x900');
+		url('https://res.cloudinary.com/dwubqdebj/image/upload/c_fill,w_1080/v1649329364/ani-watch/1600x900_grqhii.jpg');
 }
 
 .hero-heading {
@@ -45,7 +45,7 @@
 }
 
 .home-card .image-container img {
-  width: 100%;
+	width: 100%;
 }
 
 .card a {
@@ -53,11 +53,11 @@
 }
 
 .home-card .card-title {
-  height: 1.5em;
+	height: 1.5em;
 }
 
 .home-card .card-description {
-  height: 5em;
+	height: 5em;
 }
 
 /* Footer */

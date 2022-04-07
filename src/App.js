@@ -1,9 +1,18 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { useAuth } from './context/auth-context';
-import { Home, ProductPage, Login, SignUp, Wishlist, Cart } from './pages';
+import {
+	Home,
+	ProductPage,
+	Login,
+	SignUp,
+	Wishlist,
+	Cart,
+	PageNotFound
+} from './pages';
 import { Navbar } from './shared';
 import MockAPI from './mock/MockAPI';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 	const { user } = useAuth();
@@ -27,8 +36,9 @@ function App() {
 						<Route path="wishlist" element={<Wishlist />} />
 					</>
 				)}
-				<Route path="*" element={<Navigate to="/" />} />
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
+			<ToastContainer autoClose={2000} />
 		</div>
 	);
 }
