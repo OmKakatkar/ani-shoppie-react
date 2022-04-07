@@ -3,8 +3,7 @@ import {
 	faUser,
 	faHeart,
 	faShoppingCart,
-  faSitemap,
-  faCoffee
+	faCoffee
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 import { useAuth } from '../../context/auth-context';
