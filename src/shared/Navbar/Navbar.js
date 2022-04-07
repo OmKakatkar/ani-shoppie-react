@@ -2,7 +2,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faUser,
 	faHeart,
-	faShoppingCart
+	faShoppingCart,
+  faSitemap,
+  faCoffee
 } from '@fortawesome/free-solid-svg-icons';
 import './Navbar.css';
 import { useAuth } from '../../context/auth-context';
@@ -32,6 +34,12 @@ export const Navbar = () => {
 				/>
 			</label>
 			<ul className="nav-link-container flex-container">
+				<li className="nav-link">
+					<Link to="products" className="flex-container flex-column icon-badge">
+						<FontAwesomeIcon icon={faCoffee} className="text-lg" />
+						<span className="text-sm">Products</span>
+					</Link>
+				</li>
 				<li className="nav-link">
 					<div className="flex-container flex-column">
 						<FontAwesomeIcon icon={faUser} className="text-lg" />
