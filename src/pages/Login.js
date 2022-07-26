@@ -1,35 +1,40 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/auth-context';
-import './Auth.css';
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
+import "./Auth.css";
 
 export const Login = () => {
 	const initialLoginData = {
-		email: '',
-		password: ''
+		email: "",
+		password: "",
 	};
 	const guestCredentials = {
-		email: 'testuser@gmail.com',
-		password: 'test123'
+		email: "testuser@gmail.com",
+		password: "test123",
 	};
 
 	const { handleLogin } = useAuth();
 	const [loginData, setLoginData] = useState(initialLoginData);
+	const [isLoginRemember, setIsLoginRemember] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
 
-	const handleChange = e => {
+	const redirectPath = location.state?.path || "/products";
+
+	const handleChange = (e) => {
+		console.log(e.target.value);
 		setLoginData({ ...loginData, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = async e => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await handleLogin(loginData);
-		navigate('/products');
+		await handleLogin(loginData, isLoginRemember);
+		navigate(redirectPath, { replace: true });
 	};
 
-	const handleGuestLogin = async e => {
-		await handleLogin(guestCredentials);
-		navigate('/products');
+	const handleGuestLogin = async (e) => {
+		setLoginData(guestCredentials);
+		setIsLoginRemember(true);
 	};
 
 	return (
@@ -43,6 +48,7 @@ export const Login = () => {
 							type="email"
 							name="email"
 							id="email"
+							autoComplete="username"
 							placeholder="email@xyz.com"
 							className="input text-md"
 							value={loginData.email}
@@ -56,25 +62,32 @@ export const Login = () => {
 							type="password"
 							name="password"
 							id="password"
+							autoComplete="current-password"
 							className="input text-md"
 							value={loginData.password}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className="input-container input-wrap">
-						<label htmlFor="remember" className="checkbox text-sm">
+						<label htmlFor="isLoginRemember" className="checkbox text-sm">
 							<input
 								type="checkbox"
-								name="remember"
-								id="remember"
+								name="isLoginRemember"
+								id="isLoginRemember"
 								className="checkbox-input"
+								checked={isLoginRemember}
+								onChange={() =>
+									setIsLoginRemember(
+										(currentIsLoginRemember) => !currentIsLoginRemember
+									)
+								}
 							/>
 							<div className="checkbox-icon"></div>
 							Remember me
 						</label>
-						<Link to="/password-reset" className="form-link">
+						{/* <Link to="/password-reset" className="form-link">
 							Forgot Password?
-						</Link>
+						</Link> */}
 					</div>
 					<button
 						type="submit"

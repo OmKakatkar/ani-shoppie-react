@@ -1,6 +1,5 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import { useAuth } from './context/auth-context';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
 import {
 	Home,
 	ProductPage,
@@ -8,14 +7,15 @@ import {
 	SignUp,
 	Wishlist,
 	Cart,
-	PageNotFound
-} from './pages';
-import { Navbar } from './shared';
-import MockAPI from './mock/MockAPI';
-import { ToastContainer } from 'react-toastify';
+	PageNotFound,
+} from "./pages";
+import { Navbar } from "./shared";
+import MockAPI from "./mock/MockAPI";
+import { ToastContainer } from "react-toastify";
+import RequireAuth from "./components/RequireAuth/RequireAuth";
+import Auth from "./components/Auth/Auth";
 
 function App() {
-	const { user } = useAuth();
 	return (
 		<div className="App">
 			<Navbar />
@@ -24,18 +24,16 @@ function App() {
 				<Route path="/mockman" element={<MockAPI />} />
 				<Route path="products" element={<ProductPage />} />
 
-				{!user.token && (
-					<>
-						<Route path="login" element={<Login />} />
-						<Route path="signup" element={<SignUp />} />
-					</>
-				)}
-				{user.token && (
-					<>
-						<Route path="cart" element={<Cart />} />
-						<Route path="wishlist" element={<Wishlist />} />
-					</>
-				)}
+				<Route element={<Auth />}>
+					<Route path="login" element={<Login />} />
+					<Route path="signup" element={<SignUp />} />
+				</Route>
+
+				<Route element={<RequireAuth />}>
+					<Route path="cart" element={<Cart />} />
+					<Route path="wishlist" element={<Wishlist />} />
+				</Route>
+
 				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 			<ToastContainer autoClose={2000} />

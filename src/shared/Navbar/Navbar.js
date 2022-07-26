@@ -1,14 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faUser,
 	faHeart,
 	faShoppingCart,
-	faCoffee
-} from '@fortawesome/free-solid-svg-icons';
-import './Navbar.css';
-import { useAuth } from '../../context/auth-context';
-import { Link } from 'react-router-dom';
-import { useProduct } from '../../context/product-context';
+	faCoffee,
+} from "@fortawesome/free-solid-svg-icons";
+import "./Navbar.css";
+import { useAuth } from "../../context/auth-context";
+import { Link } from "react-router-dom";
+import { useProduct } from "../../context/product-context";
 
 export const Navbar = () => {
 	const { user, handleLogout } = useAuth();
@@ -62,41 +62,22 @@ export const Navbar = () => {
 					</div>
 				</li>
 				<li className="nav-link">
-					{user.token && (
-						<Link to="cart" className="flex-container flex-column icon-badge">
-							<FontAwesomeIcon icon={faShoppingCart} className="text-lg" />
-							<span className="text-sm">My Cart</span>
-							{calculateItemsInCart() > 0 && (
-								<span className="badge">{calculateItemsInCart()}</span>
-							)}
-						</Link>
-					)}
-					{!user.token && (
-						<Link to="login" className="flex-container flex-column">
-							<FontAwesomeIcon icon={faShoppingCart} className="text-lg" />
-							<span className="text-sm">My Cart</span>
-						</Link>
-					)}
+					<Link to="cart" className="flex-container flex-column icon-badge">
+						<FontAwesomeIcon icon={faShoppingCart} className="text-lg" />
+						<span className="text-sm">My Cart</span>
+						{calculateItemsInCart() > 0 && (
+							<span className="badge">{calculateItemsInCart()}</span>
+						)}
+					</Link>
 				</li>
 				<li className="nav-link">
-					{user.token && (
-						<Link
-							to="wishlist"
-							className="flex-container flex-column icon-badge"
-						>
-							<FontAwesomeIcon icon={faHeart} className="text-lg" />
-							<span className="text-sm">Wishlist</span>
-							{wishList.length > 0 && (
-								<span className="badge">{wishList.length}</span>
-							)}
-						</Link>
-					)}
-					{!user.token && (
-						<Link to="login" className="flex-container flex-column">
-							<FontAwesomeIcon icon={faHeart} className="text-lg" />
-							<span className="text-sm">Wishlist</span>
-						</Link>
-					)}
+					<Link to="wishlist" className="flex-container flex-column icon-badge">
+						<FontAwesomeIcon icon={faHeart} className="text-lg" />
+						<span className="text-sm">Wishlist</span>
+						{wishList.length > 0 && (
+							<span className="badge">{wishList.length}</span>
+						)}
+					</Link>
 				</li>
 			</ul>
 		</nav>

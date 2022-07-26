@@ -1,26 +1,29 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/auth-context';
-import './Auth.css';
+import { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
+import "./Auth.css";
 
 export const SignUp = () => {
 	const initialSignUpData = {
-		name: '',
-		email: '',
-		password: ''
+		name: "",
+		email: "",
+		password: "",
 	};
 	const { handleSignUp } = useAuth();
 	const [signUpData, setSignUpData] = useState(initialSignUpData);
 	const [acceptTnC, setAcceptTnC] = useState(false);
 	const navigate = useNavigate();
+	const location = useLocation();
 
-	const handleSubmit = async e => {
+	const redirectPath = location.state?.path || "/products";
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await handleSignUp(signUpData);
-		navigate('/products');
+		navigate(redirectPath, { replace: true });
 	};
 
-	const handleChange = e => {
+	const handleChange = (e) => {
 		setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
 	};
 
@@ -49,6 +52,7 @@ export const SignUp = () => {
 						type="email"
 						name="email"
 						id="email"
+						autoComplete="username"
 						placeholder="johndoe@gmail.com"
 						className="input text-md"
 						value={signUpData.email}
@@ -62,6 +66,7 @@ export const SignUp = () => {
 						type="password"
 						name="password"
 						id="password"
+						autoComplete="current-password"
 						className="input text-md"
 						value={signUpData.password}
 						onChange={handleChange}
@@ -76,7 +81,7 @@ export const SignUp = () => {
 							className="checkbox-input"
 							checked={acceptTnC}
 							onChange={() =>
-								setAcceptTnC(currentAcceptTnC => !currentAcceptTnC)
+								setAcceptTnC((currentAcceptTnC) => !currentAcceptTnC)
 							}
 						/>
 						<div className="checkbox-icon"></div>I accept all Terms & Conditions
