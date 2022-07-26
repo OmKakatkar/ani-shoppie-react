@@ -1,6 +1,4 @@
-import { error } from "../constants/toast-constants";
 import { useAuth } from "../context/auth-context";
-import { notify } from "../util/notify";
 import "./CartSummary.css";
 
 const loadScript = async (url) => {

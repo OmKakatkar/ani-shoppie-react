@@ -13,14 +13,18 @@ import {
 	RATING_4,
 	RATING_3,
 	RATING_2,
-	RATING_1
-} from '../constants/filter-constants';
-import { useProduct } from '../context/product-context';
-import './ProductFilter.css';
+	RATING_1,
+} from "../constants/filter-constants";
+import { useProduct } from "../context/product-context";
+import { getObjectPropertyCount } from "../util/utilities";
+import "./ProductFilter.css";
 
 function ProductFilter() {
-	const { filters, dispatch } = useProduct();
+	const { filters, dispatch, products } = useProduct();
 	const { category, maxPrice, price, rating } = filters;
+
+	const categoryProductCount = getObjectPropertyCount(products, "category");
+	const ratingProductCount = getObjectPropertyCount(products, "rating");
 
 	return (
 		<aside className="aside-nav filter-container">
@@ -46,7 +50,7 @@ function ProductFilter() {
 					type="range"
 					min="100"
 					max="900"
-					onChange={e => {
+					onChange={(e) => {
 						dispatch({ type: FILTER_BY_PRICE, payload: e.target.value });
 					}}
 					value={maxPrice || 100}
@@ -65,13 +69,13 @@ function ProductFilter() {
 								onChange={() => {
 									dispatch({
 										type: FILTER_BY_CATEGORY,
-										payload: CATEGORY_INSTANT_COFFEE
+										payload: CATEGORY_INSTANT_COFFEE,
 									});
 								}}
 								checked={category.includes(CATEGORY_INSTANT_COFFEE)}
 							/>
 							<div className="checkbox-icon"></div>
-							Instant Coffee
+							Instant Coffee {`(${categoryProductCount["Instant Coffee"]})`}
 						</label>
 					</li>
 					<li>
@@ -82,13 +86,13 @@ function ProductFilter() {
 								onChange={() => {
 									dispatch({
 										type: FILTER_BY_CATEGORY,
-										payload: CATEGORY_FILTER_COFFEE
+										payload: CATEGORY_FILTER_COFFEE,
 									});
 								}}
 								checked={category.includes(CATEGORY_FILTER_COFFEE)}
 							/>
 							<div className="checkbox-icon"></div>
-							Filter Coffee
+							Filter Coffee {`(${categoryProductCount["Filter Coffee"]})`}
 						</label>
 					</li>
 					<li>
@@ -99,13 +103,13 @@ function ProductFilter() {
 								onChange={() => {
 									dispatch({
 										type: FILTER_BY_CATEGORY,
-										payload: CATEGORY_EXPRESSO
+										payload: CATEGORY_EXPRESSO,
 									});
 								}}
 								checked={category.includes(CATEGORY_EXPRESSO)}
 							/>
 							<div className="checkbox-icon"></div>
-							Expresso
+							Expresso {`(${categoryProductCount["Expresso"]})`}
 						</label>
 					</li>
 					<li>
@@ -116,13 +120,13 @@ function ProductFilter() {
 								onChange={() => {
 									dispatch({
 										type: FILTER_BY_CATEGORY,
-										payload: CATEGORY_MUG
+										payload: CATEGORY_MUG,
 									});
 								}}
 								checked={category.includes(CATEGORY_MUG)}
 							/>
 							<div className="checkbox-icon"></div>
-							Coffee Mugs
+							Coffee Mugs {`(${categoryProductCount["Mug"]})`}
 						</label>
 					</li>
 				</ul>
@@ -141,7 +145,8 @@ function ProductFilter() {
 								}}
 								checked={rating && rating === RATING_4}
 							/>
-							<div className="radio-icon"></div>4 star & above
+							<div className="radio-icon"></div>4 star &amp; above{" "}
+							{`(${ratingProductCount["4"] + ratingProductCount["5"]})`}
 						</label>
 					</li>
 					<li>
@@ -155,7 +160,12 @@ function ProductFilter() {
 								}}
 								checked={rating && rating === RATING_3}
 							/>
-							<div className="radio-icon"></div>3 star & above
+							<div className="radio-icon"></div>3 star &amp; above{" "}
+							{`(${
+								ratingProductCount["3"] +
+								ratingProductCount["4"] +
+								ratingProductCount["5"]
+							})`}
 						</label>
 					</li>
 					<li>
@@ -169,7 +179,13 @@ function ProductFilter() {
 								}}
 								checked={rating && rating === RATING_2}
 							/>
-							<div className="radio-icon"></div>2 star & above
+							<div className="radio-icon"></div>2 star &amp; above{" "}
+							{`(${
+								ratingProductCount["2"] +
+								ratingProductCount["3"] +
+								ratingProductCount["4"] +
+								ratingProductCount["5"]
+							})`}
 						</label>
 					</li>
 					<li>
@@ -183,7 +199,13 @@ function ProductFilter() {
 								}}
 								checked={rating && rating === RATING_1}
 							/>
-							<div className="radio-icon"></div>1 star & above
+							<div className="radio-icon"></div>1 star &amp; above{" "}
+							{`(${
+								ratingProductCount["2"] +
+								ratingProductCount["3"] +
+								ratingProductCount["4"] +
+								ratingProductCount["5"]
+							})`}
 						</label>
 					</li>
 				</ul>

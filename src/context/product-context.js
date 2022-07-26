@@ -1,6 +1,5 @@
 import { createContext, useState, useContext, useReducer } from 'react';
 import {
-	PRICE_LOW_TO_HIGH,
 	SORT_BY_PRICE,
 	FILTER_BY_CATEGORY,
 	FILTER_BY_PRICE,
@@ -19,9 +18,9 @@ const removeCategory = (categoryArray, category) => {
 };
 
 const intialData = {
-	price: PRICE_LOW_TO_HIGH,
+	price: '',
 	category: [],
-	maxPrice: '',
+	maxPrice: '900',
 	rating: ''
 };
 

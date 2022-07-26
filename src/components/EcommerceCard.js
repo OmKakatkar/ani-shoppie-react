@@ -1,25 +1,26 @@
-import { useState } from 'react';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from "react";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useAuth } from '../context/auth-context';
+import { useAuth } from "../context/auth-context";
 import {
 	addToWishList,
 	removeFromWishList,
-	addToCart
-} from '../util/product-request';
-import { useProduct } from '../context/product-context';
-import Card from './Card';
+	addToCart,
+} from "../util/product-request";
+import { useProduct } from "../context/product-context";
+import Card from "./Card";
 
-import './EcommerceCard.css';
-import { Link } from 'react-router-dom';
-import { checkItemInArray } from '../util/utilities';
+import "./EcommerceCard.css";
+import { Link } from "react-router-dom";
+import { checkItemInArray } from "../util/utilities";
 
 function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();
 	const { wishList, setWishList, cart, setCart } = useProduct();
 
-	const { title, description, price, discount, image, rating } = product;
+	const { title, description, price, discount, image, rating, category } =
+		product;
 	const [isLoading, setIsLoading] = useState(false);
 
 	const insertIntoCart = async () => {
@@ -62,7 +63,7 @@ function EcommerceCard({ isWishList, product, children }) {
 					<FontAwesomeIcon
 						icon={faHeart}
 						className={`icon ${
-							checkItemInArray(wishList, product) && 'wishlist'
+							checkItemInArray(wishList, product) && "wishlist"
 						}`}
 					/>
 				</button>
@@ -75,6 +76,9 @@ function EcommerceCard({ isWishList, product, children }) {
 				<span className="original-price">Rs. {price}</span>
 				<span className="offer">{discount}% off</span>
 			</div>
+			<small className="card-chip">
+					{category}
+				</small>
 			<div>
 				{rating >= 1 && <span className="card-star-rating"></span>}
 				{rating >= 2 && <span className="card-star-rating"></span>}

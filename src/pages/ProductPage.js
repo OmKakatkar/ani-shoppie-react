@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import EcommerceCard from '../components/EcommerceCard';
-import ProductFilter from '../components/ProductFilter';
-import { getProducts } from '../util/product-request';
-import { useProduct } from '../context/product-context';
-import { getFilteredProducts } from '../helpers/filter-helper';
-import './ProductPage.css';
+import { useState, useEffect } from "react";
+import EcommerceCard from "../components/EcommerceCard";
+import ProductFilter from "../components/ProductFilter";
+import { getProducts } from "../util/product-request";
+import { useProduct } from "../context/product-context";
+import { getFilteredProducts } from "../helpers/filter-helper";
+import "./ProductPage.css";
 
 export const ProductPage = () => {
 	const { products, setProducts, filters } = useProduct();
@@ -36,12 +36,21 @@ export const ProductPage = () => {
 		<>
 			<ProductFilter />
 			<main className="product-main">
-				<h1 className="text-xhuge text-center">Products</h1>
-				<div className="container flex-container">
-					{filteredProducts.map(product => (
-						<EcommerceCard key={product._id} product={product}></EcommerceCard>
-					))}
-				</div>
+				<h1 className="text-xhuge text-center">
+					Products {`(${filteredProducts.length})`}
+				</h1>
+				{!filteredProducts.length ? (
+					<h2 className="text-huge text-center product-not-found">No Products Matched</h2>
+				) : (
+					<div className="container flex-container">
+						{filteredProducts.map((product) => (
+							<EcommerceCard
+								key={product._id}
+								product={product}
+							></EcommerceCard>
+						))}
+					</div>
+				)}
 				{isLoading && (
 					<div className="home-loader card-loader-container">
 						<img

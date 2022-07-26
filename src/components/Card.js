@@ -7,7 +7,7 @@ function Card({ title, description, isImage, isHome, cls, image, children }) {
 		return text;
 	}
 	return (
-		<article className={`card rounded ${cls}`}>
+		<article className={`card rounded ${cls ? cls : ''}`}>
 			{isImage && (
 				<div className="container flex-container image-container">
 					<img src={image} alt="" />

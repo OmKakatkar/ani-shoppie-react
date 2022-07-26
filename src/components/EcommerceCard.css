@@ -11,6 +11,17 @@
 	color: var(--primary-red);
 }
 
+small.card-chip {
+	display: inline-flex;
+	white-space: nowrap;
+	border-radius: 2rem;
+	background-color: var(--light-purple);
+	margin: 0.5rem 0;
+	padding: 0.5rem 1rem;
+	user-select: none;
+	color: var(--black);
+}
+
 .card-loader-container {
 	position: absolute;
 	top: 0;
@@ -18,8 +29,8 @@
 	left: 0;
 	z-index: 1;
 	width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--white);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--white);
 }
