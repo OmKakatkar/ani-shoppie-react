@@ -4,18 +4,28 @@ import {
 	faHeart,
 	faShoppingCart,
 	faCoffee,
+	faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 import { useAuth } from "../../context/auth-context";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useProduct } from "../../context/product-context";
+import { useState } from "react";
 
 export const Navbar = () => {
 	const { user, handleLogout } = useAuth();
 	const { wishList, cart } = useProduct();
+	const location = useLocation();
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchQuery, setSearchQuery] = useState("");
 
 	const calculateItemsInCart = () => {
 		return cart.reduce((totalItems, { qty }) => totalItems + qty, 0);
+	};
+	const handleSearch = (e) => {
+		e.preventDefault();
+		setSearchParams({ search: searchQuery });
+		setSearchQuery("");
 	};
 
 	return (
@@ -25,13 +35,22 @@ export const Navbar = () => {
 					ani shoppie
 				</Link>
 			</div>
-			<label className="search-container" aria-label="search">
-				<input
-					type="search"
-					className="searchbar text-md"
-					placeholder="Search..."
-				/>
-			</label>
+			{location.pathname === "/products" && (
+				<form className="search-wrapper" onSubmit={handleSearch}>
+					<label className="search-container" aria-label="search">
+						<input
+							type="search"
+							className="searchbar text-md"
+							placeholder="Search Products..."
+							value={searchQuery}
+							onChange={(e) => setSearchQuery(e.target.value)}
+						/>
+					</label>
+					<button className="btn search-button" type="sybmit">
+						<FontAwesomeIcon icon={faSearch} className="text-lg" />
+					</button>
+				</form>
+			)}
 			<ul className="nav-link-container flex-container">
 				<li className="nav-link">
 					<Link to="products" className="flex-container flex-column icon-badge">

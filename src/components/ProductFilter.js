@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import {
 	CATEGORY_FILTER_COFFEE,
 	CATEGORY_INSTANT_COFFEE,
@@ -22,6 +23,7 @@ import "./ProductFilter.css";
 function ProductFilter() {
 	const { filters, dispatch, products } = useProduct();
 	const { category, maxPrice, price, rating } = filters;
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	const categoryProductCount = getObjectPropertyCount(products, "category");
 	const ratingProductCount = getObjectPropertyCount(products, "rating");
@@ -33,6 +35,7 @@ function ProductFilter() {
 				<button
 					className="filter-clear"
 					onClick={() => {
+						setSearchParams();
 						dispatch({ type: CLEAR_FILTERS });
 					}}
 				>

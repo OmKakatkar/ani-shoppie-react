@@ -1,36 +1,47 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import EcommerceCard from "../components/EcommerceCard";
 import ProductFilter from "../components/ProductFilter";
 import { getProducts } from "../util/product-request";
 import { useProduct } from "../context/product-context";
 import { getFilteredProducts } from "../helpers/filter-helper";
 import "./ProductPage.css";
+import { CLEAR_FILTERS } from "../constants/filter-constants";
 
 export const ProductPage = () => {
-	const { products, setProducts, filters } = useProduct();
+	const { products, setProducts, filters, dispatch } = useProduct();
 	const { category, maxPrice, price, rating } = filters;
 	const [isLoading, setIsLoading] = useState(false);
+	const [searchParams, setSearchParams] = useSearchParams();
 
+	const search = searchParams.get("search");
 	const filteredProducts = getFilteredProducts(
 		products,
 		category,
 		maxPrice,
 		price,
-		rating
+		rating,
+		search
 	);
 
 	useEffect(() => {
 		(async () => {
-			try {
-				setIsLoading(true);
-				const { data } = await getProducts();
-				setProducts(data.products);
-				setIsLoading(false);
-			} catch (err) {
-				console.error(err);
+			if (!products.length) {
+				try {
+					setIsLoading(true);
+					const { data } = await getProducts();
+					setProducts(data.products);
+					setIsLoading(false);
+				} catch (err) {
+					console.error(err);
+				}
 			}
 		})();
-	}, [setProducts]);
+	}, [products, setProducts]);
+
+	useEffect(() => {
+		dispatch({ type: CLEAR_FILTERS });
+	}, [dispatch]);
 
 	return (
 		<>
@@ -40,7 +51,9 @@ export const ProductPage = () => {
 					Products {`(${filteredProducts.length})`}
 				</h1>
 				{!filteredProducts.length ? (
-					<h2 className="text-huge text-center product-not-found">No Products Matched</h2>
+					<h2 className="text-huge text-center product-not-found">
+						No Products Matched
+					</h2>
 				) : (
 					<div className="container flex-container">
 						{filteredProducts.map((product) => (

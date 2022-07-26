@@ -53,14 +53,25 @@ const filterByPrice = (productList, maxPrice) => {
 	return productList;
 };
 
+const searchProducts = (productList, search) => {
+	if (search) {
+		return productList.filter(({ title }) =>
+			title.toLowerCase().includes(search.toLowerCase())
+		);
+	}
+	return productList;
+};
+
 const getFilteredProducts = (
 	productList,
 	filterCategory,
 	filterPrice,
 	sortBy,
-	rating
+	rating,
+	search
 ) => {
-	const productsFilteredByRating = filterByRating(productList, rating);
+	const searchedProducts = searchProducts(productList, search);
+	const productsFilteredByRating = filterByRating(searchedProducts, rating);
 	const productsFilteredByPrice = filterByPrice(
 		productsFilteredByRating,
 		filterPrice

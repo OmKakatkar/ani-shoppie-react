@@ -1,11 +1,11 @@
-import { createContext, useState, useContext, useReducer } from 'react';
+import { createContext, useState, useContext, useReducer } from "react";
 import {
 	SORT_BY_PRICE,
 	FILTER_BY_CATEGORY,
 	FILTER_BY_PRICE,
 	CLEAR_FILTERS,
-	FILTER_BY_RATING
-} from '../constants/filter-constants';
+	FILTER_BY_RATING,
+} from "../constants/filter-constants";
 
 const ProductContext = createContext();
 
@@ -14,14 +14,14 @@ const addCategory = (categoryArray, category) => {
 };
 
 const removeCategory = (categoryArray, category) => {
-	return categoryArray.filter(c => c !== category);
+	return categoryArray.filter((c) => c !== category);
 };
 
 const intialData = {
-	price: '',
+	price: "",
 	category: [],
-	maxPrice: '900',
-	rating: ''
+	maxPrice: "900",
+	rating: "",
 };
 
 const reducer = (state, action) => {
@@ -34,12 +34,12 @@ const reducer = (state, action) => {
 			if (state.category.includes(action.payload)) {
 				return {
 					...state,
-					category: removeCategory(state.category, action.payload)
+					category: removeCategory(state.category, action.payload),
 				};
 			}
 			return {
 				...state,
-				category: addCategory(state.category, action.payload)
+				category: addCategory(state.category, action.payload),
 			};
 		case FILTER_BY_PRICE:
 			return { ...state, maxPrice: action.payload };
@@ -64,7 +64,7 @@ const ProductProvider = ({ children }) => {
 		wishList,
 		setWishList,
 		cart,
-		setCart
+		setCart,
 	};
 	return (
 		<ProductContext.Provider value={productContextValue}>
