@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAdd, faSubtract, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../context/auth-context';
-import { useProduct } from '../context/product-context';
-import { checkItemInArray } from '../util/utilities';
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAdd, faSubtract, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
+import { useProduct } from "../context/product-context";
+import { checkItemInArray } from "../util/utilities";
 import {
 	addToWishList,
 	changeCartQuantity,
-	removeFromCart
-} from '../util/product-request';
-import './CartCard.css';
+	removeFromCart,
+} from "../util/product-request";
+import "./CartCard.css";
 
 function CartCard({ product }) {
 	const { title, price, qty, image, discount } = product;
@@ -41,10 +41,10 @@ function CartCard({ product }) {
 		}
 	};
 
-	const changeQuantity = async type => {
+	const changeQuantity = async (type) => {
 		try {
 			setIsLoading(true);
-			if (type === 'decrement' && qty === 1) {
+			if (type === "decrement" && qty === 1) {
 				deleteFromCart();
 			} else {
 				const { data } = await changeCartQuantity(user.token, product, type);
@@ -66,7 +66,8 @@ function CartCard({ product }) {
 				<div className="quantity-container">
 					<button
 						className="btn circular bd-blue"
-						onClick={() => changeQuantity('decrement')}
+						disabled={isLoading}
+						onClick={() => changeQuantity("decrement")}
 					>
 						{product.qty > 1 && <FontAwesomeIcon icon={faSubtract} />}
 						{product.qty === 1 && <FontAwesomeIcon icon={faTrash} />}
@@ -74,7 +75,8 @@ function CartCard({ product }) {
 					<span className="text-huge">{qty}</span>
 					<button
 						className="btn circular bd-blue"
-						onClick={() => changeQuantity('increment')}
+						disabled={isLoading}
+						onClick={() => changeQuantity("increment")}
 					>
 						<FontAwesomeIcon icon={faAdd} />
 					</button>
@@ -86,30 +88,29 @@ function CartCard({ product }) {
 					<span className="original-price">Rs. {price}</span>
 					<span className="offer">{discount}% off</span>
 				</div>
-				<button className="btn bg-red rounded" onClick={deleteFromCart}>
+				<button
+					className="btn bg-red rounded"
+					disabled={isLoading}
+					onClick={deleteFromCart}
+				>
 					Remove from Cart
 				</button>
-				{!checkItemInArray(wishList, product) && (
-					<button className="btn bg-blue rounded" onClick={moveToWishlist}>
+				{!checkItemInArray(wishList, product) ? (
+					<button
+						className="btn bg-blue rounded"
+						disabled={isLoading}
+						onClick={moveToWishlist}
+					>
 						Move to Wishlist
 					</button>
-				)}
-				{checkItemInArray(wishList, product) && (
+				) : (
 					<Link to="/wishlist" className="flex">
-						<button className="btn bg-green rounded">Show in Wishlist</button>
+						<button className="btn bg-green rounded" disabled={isLoading}>
+							Show in Wishlist
+						</button>
 					</Link>
 				)}
 			</div>
-
-			{isLoading && (
-				<div className="card-loader-container">
-					<img
-						src="https://res.cloudinary.com/dwubqdebj/image/upload/c_scale,w_500/v1649329000/ani-watch/loader_ixolpe.gif"
-						alt="loader"
-						className="card-loader"
-					></img>
-				</div>
-			)}
 		</article>
 	);
 }

@@ -63,7 +63,7 @@ function EcommerceCard({ isWishList, product, children }) {
 					<FontAwesomeIcon
 						icon={faHeart}
 						className={`icon ${
-							checkItemInArray(wishList, product) && "wishlist"
+							checkItemInArray(wishList, product) && (!isLoading) && "wishlist"
 						}`}
 					/>
 				</button>
@@ -76,9 +76,7 @@ function EcommerceCard({ isWishList, product, children }) {
 				<span className="original-price">Rs. {price}</span>
 				<span className="offer">{discount}% off</span>
 			</div>
-			<small className="card-chip">
-					{category}
-				</small>
+			<small className="card-chip">{category}</small>
 			<div>
 				{rating >= 1 && <span className="card-star-rating"></span>}
 				{rating >= 2 && <span className="card-star-rating"></span>}
@@ -89,25 +87,18 @@ function EcommerceCard({ isWishList, product, children }) {
 			{children}
 			{user.token && (
 				<>
-					{!checkItemInArray(cart, product) && (
-						<button className="btn bg-blue rounded" onClick={insertIntoCart}>
+					{!checkItemInArray(cart, product) ? (
+						<button
+							className="btn bg-blue rounded"
+							onClick={insertIntoCart}
+							disabled={isLoading}
+						>
 							Add to Cart
 						</button>
-					)}
-					{checkItemInArray(cart, product) && (
+					) : (
 						<Link to="/cart" className="flex">
 							<button className="btn bg-green rounded">Show in Cart</button>
 						</Link>
-					)}
-
-					{isLoading && (
-						<div className="card-loader-container">
-							<img
-								src="https://res.cloudinary.com/dwubqdebj/image/upload/c_scale,w_500/v1649329000/ani-watch/loader_ixolpe.gif"
-								alt="loader"
-								className="card-loader"
-							></img>
-						</div>
 					)}
 				</>
 			)}

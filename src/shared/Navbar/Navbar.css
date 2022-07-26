@@ -6,10 +6,16 @@
 
 .ecom-nav a {
 	display: flex;
+	margin: 1rem;
 }
 
-.nav-link {
+.ecom-nav div {
+	margin: 1rem;
+}
+
+.nav .nav-link {
 	position: relative;
+	margin-right: 0;
 }
 
 .nav-link > .dropdown {
