@@ -18,7 +18,6 @@ export const Login = () => {
 	const [isLoginRemember, setIsLoginRemember] = useState(false);
 
 	const handleChange = (e) => {
-		console.log(e.target.value);
 		setLoginData({ ...loginData, [e.target.name]: e.target.value });
 	};
 

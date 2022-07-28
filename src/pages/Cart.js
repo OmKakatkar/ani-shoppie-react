@@ -20,7 +20,6 @@ export const Cart = () => {
 		setCartTotal(calculateCartTotal());
 	}, [cart, setCartTotal]);
 
-	console.log(cartTotal);
 	return (
 		<>
 			<main className="cart-main">

@@ -1,7 +1,6 @@
 import "./ProductSummaryCard.css";
 function ProductSummaryCard({ product }) {
 	const { title, image, qty, price } = product;
-	console.log(product);
 	return (
 		<article className="mg-1r pad-1r pad-top-2r pad-btm-2r card flex-container product-summary-card">
 			<div className="flex-container">
