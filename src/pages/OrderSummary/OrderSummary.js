@@ -1,4 +1,4 @@
-import { useLocation, Navigate } from "react-router-dom";
+import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import CartSummary from "../../components/CartSummary";
 import usePaymentIntegration from "../../hooks/usePaymentIntegration";
 import { useAuth } from "../../context/auth-context";
@@ -6,13 +6,32 @@ import { useProduct } from "../../context/product-context";
 import ProductSummaryCard from "../../components/ProductSummaryCard/ProductSummaryCard";
 import "./OrderSummary.css";
 import AddressCard from "../../components/AddressCard/AddressCard";
+import { emptyCart } from "../../util/product-request";
 
 export const OrderSummary = () => {
-	const { cart, cartTotal } = useProduct();
+	const { cart, cartTotal, setCart, setCartTotal } = useProduct();
 	const { user } = useAuth();
+	const navigate = useNavigate();
 	const location = useLocation();
 
-	const showRazorPay = usePaymentIntegration(cartTotal + 50, user.user);
+	const handleCheckout = async () => {
+		try {
+			const { data } = await emptyCart(user.token);
+			console.log(data);
+			setCartTotal(0);
+			setCart(data.cart);
+			navigate("/thank-you", { state: { path: location.pathname } });
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const showRazorPay = usePaymentIntegration(
+		cartTotal + 50,
+		user.user,
+		handleCheckout
+	);
+
 	return cartTotal > 0 ? (
 		<>
 			<main className="cart-main">

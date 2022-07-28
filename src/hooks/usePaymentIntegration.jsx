@@ -15,7 +15,7 @@ const loadScript = async (url) => {
 	});
 };
 
-function usePaymentIntegration(price, user) {
+function usePaymentIntegration(price, user, handler) {
 	async function showRazorPay() {
 		const res = await loadScript(
 			"https://checkout.razorpay.com/v1/checkout.js"
@@ -34,10 +34,7 @@ function usePaymentIntegration(price, user) {
 			description: "Place your order now",
 			image:
 				"https://res.cloudinary.com/dwubqdebj/image/upload/v1658770075/logo_2_zcdaex.png",
-			handler: function (response) {
-				const paymentId = response.razorpay_payment_id;
-				console.log(paymentId);
-			},
+			handler,
 			prefill: {
 				name: user.name,
 				email: user.email,

@@ -6,7 +6,7 @@ function Auth() {
 	const location = useLocation();
 
 	if (user.token) {
-		return <Navigate replace to={location.state?.path || "/"} />;
+		return <Navigate replace to={location.state?.path || "/products"} />;
 	}
 
 	return <Outlet />;

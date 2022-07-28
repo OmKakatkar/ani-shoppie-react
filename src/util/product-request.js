@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 import {
 	API_CATEGORIES,
 	API_ALL_PRODUCTS,
 	API_CART,
-	API_WISHLIST
-} from '../constants/api-constants';
-import { error, success } from '../constants/toast-constants';
-import { notify } from './notify';
+	API_WISHLIST,
+} from "../constants/api-constants";
+import { error, success } from "../constants/toast-constants";
+import { notify } from "./notify";
 
 // API functions for Categories
 const getCategories = async () => {
@@ -14,7 +14,7 @@ const getCategories = async () => {
 		const data = await axios.get(API_CATEGORIES);
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to fetch data');
+		notify(error, "Unable to fetch data");
 		console.error(err);
 	}
 };
@@ -25,22 +25,22 @@ const getProducts = async () => {
 		const data = await axios.get(API_ALL_PRODUCTS);
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to fetch data');
+		notify(error, "Unable to fetch data");
 		console.error(err);
 	}
 };
 
 // API functions for WishList
-const getWishlist = async authToken => {
+const getWishlist = async (authToken) => {
 	try {
 		const data = await axios.get(API_WISHLIST, {
 			headers: {
-				authorization: authToken
-			}
+				authorization: authToken,
+			},
 		});
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to fetch data');
+		notify(error, "Unable to fetch data");
 		console.error(err);
 	}
 };
@@ -52,14 +52,14 @@ const addToWishList = async (authToken, product) => {
 			{ product },
 			{
 				headers: {
-					authorization: authToken
-				}
+					authorization: authToken,
+				},
 			}
 		);
-		notify(success, 'Added to Wishlist');
+		notify(success, "Added to Wishlist");
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to post data');
+		notify(error, "Unable to post data");
 		console.error(err);
 	}
 };
@@ -68,29 +68,29 @@ const removeFromWishList = async (authToken, product) => {
 	try {
 		const data = await axios.delete(`${API_WISHLIST}/${product._id}`, {
 			headers: {
-				authorization: authToken
-			}
+				authorization: authToken,
+			},
 		});
-		notify(success, 'Removed from Wishlist');
+		notify(success, "Removed from Wishlist");
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to remove data');
+		notify(error, "Unable to remove data");
 		console.error(err);
 	}
 };
 
 // API functions for Cart
 
-const getCart = async authToken => {
+const getCart = async (authToken) => {
 	try {
 		const data = await axios.get(API_CART, {
 			headers: {
-				authorization: authToken
-			}
+				authorization: authToken,
+			},
 		});
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to fetch data');
+		notify(error, "Unable to fetch data");
 		console.error(err);
 	}
 };
@@ -102,14 +102,14 @@ const addToCart = async (authToken, product) => {
 			{ product },
 			{
 				headers: {
-					authorization: authToken
-				}
+					authorization: authToken,
+				},
 			}
 		);
-		notify(success, 'Added to Cart');
+		notify(success, "Added to Cart");
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to post data');
+		notify(error, "Unable to post data");
 		console.error(err);
 	}
 };
@@ -118,13 +118,27 @@ const removeFromCart = async (authToken, product) => {
 	try {
 		const data = await axios.delete(`${API_CART}/${product._id}`, {
 			headers: {
-				authorization: authToken
-			}
+				authorization: authToken,
+			},
 		});
-		notify(success, 'Removed from Cart');
+		notify(success, "Removed from Cart");
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to remove data');
+		notify(error, "Unable to remove data");
+		console.error(err);
+	}
+};
+
+const emptyCart = async (authToken) => {
+	try {
+		const data = await axios.delete(API_CART, {
+			headers: {
+				authorization: authToken,
+			},
+		});
+		return data;
+	} catch (err) {
+		notify(error, "Unable to remove data");
 		console.error(err);
 	}
 };
@@ -135,18 +149,18 @@ const changeCartQuantity = async (authToken, product, type) => {
 			`${API_CART}/${product._id}`,
 			{
 				action: {
-					type
-				}
+					type,
+				},
 			},
 			{
 				headers: {
-					authorization: authToken
-				}
+					authorization: authToken,
+				},
 			}
 		);
 		return data;
 	} catch (err) {
-		notify(error, 'Unable to fetch data');
+		notify(error, "Unable to fetch data");
 		console.error(err);
 	}
 };
@@ -160,5 +174,6 @@ export {
 	getCart,
 	addToCart,
 	removeFromCart,
-	changeCartQuantity
+	emptyCart,
+	changeCartQuantity,
 };

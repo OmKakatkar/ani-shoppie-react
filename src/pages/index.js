@@ -6,3 +6,4 @@ export * from "./Cart";
 export * from "./Wishlist";
 export * from "./PageNotFound";
 export * from "./OrderSummary/OrderSummary";
+export * from "./ThankYou/ThankYou";
