@@ -1,0 +1,23 @@
+.address-card {
+	position: fixed;
+	bottom: 5rem;
+	right: 3rem;
+	padding: 2rem;
+	max-width: 44rem;
+}
+
+.address-card-header {
+	background-color: var(--black);
+}
+
+.address-card-content {
+	background-color: var(--white);
+}
+
+.address-card-field span:nth-child(1) {
+	flex: 0 0 25%;
+}
+
+.address-card-field span:nth-child(2) {
+	max-width: 36ch;
+}

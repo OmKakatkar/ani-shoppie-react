@@ -5,6 +5,7 @@ import { useAuth } from "../../context/auth-context";
 import { useProduct } from "../../context/product-context";
 import ProductSummaryCard from "../../components/ProductSummaryCard/ProductSummaryCard";
 import "./OrderSummary.css";
+import AddressCard from "../../components/AddressCard/AddressCard";
 
 export const OrderSummary = () => {
 	const { cart, cartTotal } = useProduct();
@@ -35,6 +36,7 @@ export const OrderSummary = () => {
 					Proceed to Payment
 				</button>
 			</CartSummary>
+			<AddressCard />
 		</>
 	) : (
 		<Navigate to={location.state?.path || "/products"} />
