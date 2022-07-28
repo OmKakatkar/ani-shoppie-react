@@ -17,10 +17,8 @@ const AuthProvider = ({ children }) => {
 			if (token && isLoginRemember) {
 				localStorage.setItem(currentUser, JSON.stringify({ user, token }));
 				setUser(JSON.parse(localStorage.getItem(currentUser)));
-				console.log("here1");
 			} else if (token) {
 				setUser({ user, token });
-				console.log("here2");
 			}
 		} catch (err) {
 			console.error(err);

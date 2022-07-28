@@ -16,7 +16,7 @@ export const Navbar = () => {
 	const { user, handleLogout } = useAuth();
 	const { wishList, cart } = useProduct();
 	const location = useLocation();
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [, setSearchParams] = useSearchParams();
 	const [searchQuery, setSearchQuery] = useState("");
 
 	const calculateItemsInCart = () => {
@@ -46,7 +46,7 @@ export const Navbar = () => {
 							onChange={(e) => setSearchQuery(e.target.value)}
 						/>
 					</label>
-					<button className="btn search-button" type="sybmit">
+					<button className="btn search-button" type="submit">
 						<FontAwesomeIcon icon={faSearch} className="text-lg" />
 					</button>
 				</form>
