@@ -12,7 +12,7 @@ export const ProductPage = () => {
 	const { products, setProducts, filters, dispatch } = useProduct();
 	const { category, maxPrice, price, rating } = filters;
 	const [isLoading, setIsLoading] = useState(false);
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
 	const search = searchParams.get("search");
 	const filteredProducts = getFilteredProducts(

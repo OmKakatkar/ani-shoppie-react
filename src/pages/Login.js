@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import "./Auth.css";
 
@@ -16,20 +16,14 @@ export const Login = () => {
 	const { handleLogin } = useAuth();
 	const [loginData, setLoginData] = useState(initialLoginData);
 	const [isLoginRemember, setIsLoginRemember] = useState(false);
-	const navigate = useNavigate();
-	const location = useLocation();
-
-	const redirectPath = location.state?.path || "/products";
 
 	const handleChange = (e) => {
-		console.log(e.target.value);
 		setLoginData({ ...loginData, [e.target.name]: e.target.value });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await handleLogin(loginData, isLoginRemember);
-		navigate(redirectPath, { replace: true });
 	};
 
 	const handleGuestLogin = async (e) => {

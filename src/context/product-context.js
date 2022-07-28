@@ -55,6 +55,7 @@ const ProductProvider = ({ children }) => {
 	const [products, setProducts] = useState([]);
 	const [wishList, setWishList] = useState([]);
 	const [cart, setCart] = useState([]);
+	const [cartTotal, setCartTotal] = useState(0);
 
 	const productContextValue = {
 		filters,
@@ -65,6 +66,8 @@ const ProductProvider = ({ children }) => {
 		setWishList,
 		cart,
 		setCart,
+		cartTotal,
+		setCartTotal,
 	};
 	return (
 		<ProductContext.Provider value={productContextValue}>

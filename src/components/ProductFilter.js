@@ -23,7 +23,7 @@ import "./ProductFilter.css";
 function ProductFilter() {
 	const { filters, dispatch, products } = useProduct();
 	const { category, maxPrice, price, rating } = filters;
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [, setSearchParams] = useSearchParams();
 
 	const categoryProductCount = getObjectPropertyCount(products, "category");
 	const ratingProductCount = getObjectPropertyCount(products, "rating");

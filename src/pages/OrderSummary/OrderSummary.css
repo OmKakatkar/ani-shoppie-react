@@ -1,0 +1,14 @@
+.order-header {
+	flex: 0 1 80%;
+	background-color: var(--black);
+}
+
+.order-header p:nth-child(1) {
+	max-width: 63%;
+	flex-basis: 63%;
+}
+
+.order-header p:nth-child(3) {
+	max-width: 26%;
+	flex-basis: 26%;
+}
