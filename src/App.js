@@ -8,6 +8,7 @@ import {
 	Wishlist,
 	Cart,
 	PageNotFound,
+	OrderSummary,
 } from "./pages";
 import { Navbar } from "./shared";
 import MockAPI from "./mock/MockAPI";
@@ -32,6 +33,7 @@ function App() {
 				<Route element={<RequireAuth />}>
 					<Route path="cart" element={<Cart />} />
 					<Route path="wishlist" element={<Wishlist />} />
+					<Route path="order-summary" element={<OrderSummary />} />
 				</Route>
 
 				<Route path="*" element={<PageNotFound />} />

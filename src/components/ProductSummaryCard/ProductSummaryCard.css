@@ -1,0 +1,13 @@
+.product-summary-card {
+	flex: 0 1 80%;
+	justify-content: space-between;
+}
+
+.product-summary-card img {
+	margin: 0 1rem;
+}
+
+.product-summary-card p {
+	width: 20ch;
+}
+
