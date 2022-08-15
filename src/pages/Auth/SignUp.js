@@ -9,6 +9,13 @@ export const SignUp = () => {
 		email: "",
 		password: "",
 	};
+
+	const guestCredentials = {
+		name: "John Doe",
+		email: "johndoe@gmail.com",
+		password: "john123",
+	};
+
 	const { handleSignUp } = useAuth();
 	const [signUpData, setSignUpData] = useState(initialSignUpData);
 	const [acceptTnC, setAcceptTnC] = useState(false);
@@ -22,82 +29,95 @@ export const SignUp = () => {
 		setSignUpData({ ...signUpData, [e.target.name]: e.target.value });
 	};
 
+	const handleFillGuestCredentials = () => {
+		setSignUpData(guestCredentials);
+		setAcceptTnC(true);
+	};
+
 	return (
 		<main className="flex-container ecom-main">
-			<form
-				className="form-container flex-container flex-column"
-				onSubmit={handleSubmit}
-			>
-				<h1 className="text-xhuge form-heading">Sign Up</h1>
-				<div className="input-container">
-					<label htmlFor="name"> Name </label>
-					<input
-						type="text"
-						name="name"
-						id="name"
-						placeholder="John Doe"
-						className="input text-md"
-						value={signUpData.name}
-						onChange={handleChange}
-					/>
-				</div>
-				<div className="input-container">
-					<label htmlFor="email"> Email </label>
-					<input
-						type="email"
-						name="email"
-						id="email"
-						autoComplete="username"
-						placeholder="johndoe@gmail.com"
-						className="input text-md"
-						value={signUpData.email}
-						onChange={handleChange}
-					/>
-				</div>
-
-				<div className="input-container">
-					<label htmlFor="password"> Password </label>
-					<input
-						type="password"
-						name="password"
-						id="password"
-						autoComplete="current-password"
-						className="input text-md"
-						value={signUpData.password}
-						onChange={handleChange}
-					/>
-				</div>
-				<div className="input-container">
-					<label htmlFor="remember" className="checkbox text-xsm">
+			<div className="form-container">
+				<form className="flex-container flex-column" onSubmit={handleSubmit}>
+					<h1 className="text-xhuge form-heading">Sign Up</h1>
+					<div className="input-container">
+						<label htmlFor="name"> Name </label>
 						<input
-							type="checkbox"
-							name="remember"
-							id="remember"
-							className="checkbox-input"
-							checked={acceptTnC}
-							onChange={() =>
-								setAcceptTnC((currentAcceptTnC) => !currentAcceptTnC)
-							}
+							type="text"
+							name="name"
+							id="name"
+							placeholder="John Doe"
+							className="input text-md"
+							value={signUpData.name}
+							onChange={handleChange}
 						/>
-						<div className="checkbox-icon"></div>I accept all Terms & Conditions
-					</label>
-				</div>
+					</div>
+					<div className="input-container">
+						<label htmlFor="email"> Email </label>
+						<input
+							type="email"
+							name="email"
+							id="email"
+							autoComplete="username"
+							placeholder="johndoe@gmail.com"
+							className="input text-md"
+							value={signUpData.email}
+							onChange={handleChange}
+						/>
+					</div>
+
+					<div className="input-container">
+						<label htmlFor="password"> Password </label>
+						<input
+							type="password"
+							name="password"
+							id="password"
+							autoComplete="current-password"
+							className="input text-md"
+							value={signUpData.password}
+							onChange={handleChange}
+						/>
+					</div>
+					<div className="input-container">
+						<label htmlFor="remember" className="checkbox text-xsm">
+							<input
+								type="checkbox"
+								name="remember"
+								id="remember"
+								className="checkbox-input"
+								checked={acceptTnC}
+								onChange={() =>
+									setAcceptTnC((currentAcceptTnC) => !currentAcceptTnC)
+								}
+							/>
+							<div className="checkbox-icon"></div>I accept all Terms &
+							Conditions
+						</label>
+					</div>
+					<button
+						type="submit"
+						className="btn rounded bg-blue"
+						disabled={
+							!signUpData.name ||
+							!signUpData.email ||
+							!signUpData.password ||
+							!acceptTnC
+						}
+					>
+						Create New Account
+					</button>
+				</form>
 				<button
-					type="submit"
-					className="btn rounded bg-blue"
-					disabled={
-						!signUpData.name ||
-						!signUpData.email ||
-						!signUpData.password ||
-						!acceptTnC
-					}
+					className="btn rounded bd-blue"
+					onClick={handleFillGuestCredentials}
 				>
-					Create New Account
+					Fill Guest Credentials
 				</button>
-				<Link to="/login" className="form-link">
-					Already have an account
-				</Link>
-			</form>
+				<div className="text-center">
+					<Link to="/login" className="form-link">
+						Already have an account
+					</Link>
+				</div>
+			</div>
 		</main>
 	);
 };

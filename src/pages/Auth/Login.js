@@ -91,16 +91,14 @@ export const Login = () => {
 						Login
 					</button>
 				</form>
-				<button
-					type="submit"
-					className="btn rounded bd-blue"
-					onClick={handleGuestLogin}
-				>
-					Guest Login
+				<button className="btn rounded bd-blue" onClick={handleGuestLogin}>
+					Fill Guest Credentials
 				</button>
-				<Link to="/signup" className="form-link">
-					Create an account
-				</Link>
+				<div className="text-center">
+					<Link to="/signup" className="form-link">
+						Create an account
+					</Link>
+				</div>
 			</div>
 		</main>
 	);
