@@ -2,14 +2,14 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faSubtract, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useAuth } from "../context/auth-context";
-import { useProduct } from "../context/product-context";
-import { checkItemInArray } from "../util/utilities";
+import { useAuth } from "../../context/auth-context";
+import { useProduct } from "../../context/product-context";
+import { checkItemInArray } from "../../util/utilities";
 import {
 	addToWishList,
 	changeCartQuantity,
 	removeFromCart,
-} from "../util/product-request";
+} from "../../util/product-request";
 import "./CartCard.css";
 
 function CartCard({ product }) {

@@ -5,6 +5,7 @@ import {
 	FILTER_BY_PRICE,
 	CLEAR_FILTERS,
 	FILTER_BY_RATING,
+	FILTER_BY_SINGLE_CATEGORY,
 } from "../constants/filter-constants";
 
 const ProductContext = createContext();
@@ -40,6 +41,11 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				category: addCategory(state.category, action.payload),
+			};
+		case FILTER_BY_SINGLE_CATEGORY:
+			return {
+				...state,
+				category: [action.payload],
 			};
 		case FILTER_BY_PRICE:
 			return { ...state, maxPrice: action.payload };

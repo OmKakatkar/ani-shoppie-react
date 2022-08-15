@@ -2,18 +2,18 @@ import { useState } from "react";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { useAuth } from "../context/auth-context";
+import { useAuth } from "../../context/auth-context";
 import {
 	addToWishList,
 	removeFromWishList,
 	addToCart,
-} from "../util/product-request";
-import { useProduct } from "../context/product-context";
-import Card from "./Card";
+} from "../../util/product-request";
+import { useProduct } from "../../context/product-context";
+import Card from "../Card/Card";
 
 import "./EcommerceCard.css";
 import { Link } from "react-router-dom";
-import { checkItemInArray } from "../util/utilities";
+import { checkItemInArray } from "../../util/utilities";
 
 function EcommerceCard({ isWishList, product, children }) {
 	const { user } = useAuth();

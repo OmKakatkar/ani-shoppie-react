@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-import { services } from '../constants/services';
-import { Footer } from '../shared';
-import { getCategories } from '../util/product-request';
-import Card from '../components/Card';
+import { services } from "../../constants/services";
+import { Footer } from "../../shared";
+import { getCategories } from "../../util/product-request";
+import Card from "../../components/Card/Card";
 
-import './Home.css';
+import "./Home.css";
 
 export const Home = () => {
 	const [categories, setCategories] = useState([]);
@@ -46,15 +46,21 @@ export const Home = () => {
 					{categories
 						.slice(0, 2)
 						.map(({ _id, categoryName, description, image }) => (
-							<Card
+							<Link
+								to="/products"
+								state={{ filter: categoryName }}
 								key={_id}
-								title={categoryName}
-								description={description}
-								image={image}
-								cls="shadow home-card"
-								isHome
-								isImage
-							/>
+								className="text-black"
+							>
+								<Card
+									title={categoryName}
+									description={description}
+									image={image}
+									cls="shadow home-card"
+									isHome
+									isImage
+								/>
+							</Link>
 						))}
 				</section>
 

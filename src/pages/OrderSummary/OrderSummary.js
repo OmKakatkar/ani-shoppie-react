@@ -1,5 +1,5 @@
 import { useLocation, Navigate, useNavigate } from "react-router-dom";
-import CartSummary from "../../components/CartSummary";
+import CartSummary from "../../components/CartSummary/CartSummary";
 import usePaymentIntegration from "../../hooks/usePaymentIntegration";
 import { useAuth } from "../../context/auth-context";
 import { useProduct } from "../../context/product-context";
