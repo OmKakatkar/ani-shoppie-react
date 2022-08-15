@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import CartCard from "../components/CartCard";
-import CartSummary from "../components/CartSummary";
-import CustomLink from "../components/CustomLink/CustomLink";
-import { useProduct } from "../context/product-context";
+import CartCard from "../../components/CartCard/CartCard";
+import CartSummary from "../../components/CartSummary/CartSummary";
+import CustomLink from "../../components/CustomLink/CustomLink";
+import { useProduct } from "../../context/product-context";
 import "./Cart.css";
 
 export const Cart = () => {

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import EcommerceCard from "../components/EcommerceCard";
-import ProductFilter from "../components/ProductFilter";
-import { getProducts } from "../util/product-request";
-import { useProduct } from "../context/product-context";
-import { getFilteredProducts } from "../helpers/filter-helper";
+import EcommerceCard from "../../components/EcommerceCard/EcommerceCard";
+import ProductFilter from "../../components/Filter/ProductFilter";
+import { getProducts } from "../../util/product-request";
+import { useProduct } from "../../context/product-context";
+import { getFilteredProducts } from "../../helpers/filter-helper";
 import "./ProductPage.css";
 
 export const ProductPage = () => {

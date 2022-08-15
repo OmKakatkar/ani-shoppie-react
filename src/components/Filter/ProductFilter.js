@@ -15,10 +15,10 @@ import {
 	RATING_3,
 	RATING_2,
 	RATING_1,
-} from "../constants/filter-constants";
-import { useProduct } from "../context/product-context";
-import { getObjectPropertyCount } from "../util/utilities";
-import "./ProductFilter.css";
+} from "../../constants/filter-constants";
+import { useProduct } from "../../context/product-context";
+import { getObjectPropertyCount } from "../../util/utilities";
+import './ProductFilter.css';
 
 function ProductFilter() {
 	const { filters, dispatch, products } = useProduct();

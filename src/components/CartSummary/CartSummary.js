@@ -1,5 +1,5 @@
 import "./CartSummary.css";
-import { useProduct } from "../context/product-context";
+import { useProduct } from "../../context/product-context";
 
 function CartSummary({ children }) {
 	const { cartTotal } = useProduct();

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import EcommerceCard from "../components/EcommerceCard";
-import { useProduct } from "../context/product-context";
+import EcommerceCard from "../../components/EcommerceCard/EcommerceCard";
+import { useProduct } from "../../context/product-context";
 
 export const Wishlist = () => {
 	const { wishList } = useProduct();

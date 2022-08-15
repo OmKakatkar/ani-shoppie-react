@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { services } from '../constants/services';
-import { Footer } from '../shared';
-import { getCategories } from '../util/product-request';
-import Card from '../components/Card';
+import { services } from '../../constants/services';
+import { Footer } from '../../shared';
+import { getCategories } from '../../util/product-request';
+import Card from '../../components/Card/Card';
 
 import './Home.css';
 
