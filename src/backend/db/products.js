@@ -186,7 +186,7 @@ export const products = [
 		price:'710',
 		discount: '10',
 		rating: '5',
-		category: 'Mug',
+		category: 'Coffee Mugs',
 		description:
 			"Insulated Coffee Cup with Leakproof Lid ,Vacuum Insulation Stainless Steel Reusable for Hot and Cold Coffee,"
 	},
@@ -197,7 +197,7 @@ export const products = [
 		price:'270',
 		discount: '4',
 		rating: '4',
-		category: 'Mug',
+		category: 'Coffee Mugs',
 		description:
 			"Lazy Panda Printed Coffee Mug. Ceramic Coffee Tea Milk Mugs"
 	},
@@ -208,7 +208,7 @@ export const products = [
 		price:'890',
 		discount: '4',
 		rating: '4',
-		category: 'Mug',
+		category: 'Coffee Mugs',
 		description:
 			"Coffee Sipper 500ml. Travel Mug Keeps Drinks Hot and Cold for 6 Hours. Travel Coffee Mu"
 	},

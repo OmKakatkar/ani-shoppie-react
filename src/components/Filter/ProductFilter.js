@@ -18,7 +18,7 @@ import {
 } from "../../constants/filter-constants";
 import { useProduct } from "../../context/product-context";
 import { getObjectPropertyCount } from "../../util/utilities";
-import './ProductFilter.css';
+import "./ProductFilter.css";
 
 function ProductFilter() {
 	const { filters, dispatch, products } = useProduct();
@@ -78,7 +78,8 @@ function ProductFilter() {
 								checked={category.includes(CATEGORY_INSTANT_COFFEE)}
 							/>
 							<div className="checkbox-icon"></div>
-							Instant Coffee {`(${categoryProductCount["Instant Coffee"]})`}
+							Instant Coffee{" "}
+							{`(${categoryProductCount[CATEGORY_INSTANT_COFFEE]})`}
 						</label>
 					</li>
 					<li>
@@ -95,7 +96,8 @@ function ProductFilter() {
 								checked={category.includes(CATEGORY_FILTER_COFFEE)}
 							/>
 							<div className="checkbox-icon"></div>
-							Filter Coffee {`(${categoryProductCount["Filter Coffee"]})`}
+							Filter Coffee{" "}
+							{`(${categoryProductCount[CATEGORY_FILTER_COFFEE]})`}
 						</label>
 					</li>
 					<li>
@@ -112,7 +114,7 @@ function ProductFilter() {
 								checked={category.includes(CATEGORY_EXPRESSO)}
 							/>
 							<div className="checkbox-icon"></div>
-							Expresso {`(${categoryProductCount["Expresso"]})`}
+							Expresso {`(${categoryProductCount[CATEGORY_EXPRESSO]})`}
 						</label>
 					</li>
 					<li>
@@ -129,7 +131,7 @@ function ProductFilter() {
 								checked={category.includes(CATEGORY_MUG)}
 							/>
 							<div className="checkbox-icon"></div>
-							Coffee Mugs {`(${categoryProductCount["Mug"]})`}
+							Coffee Mugs {`(${categoryProductCount[CATEGORY_MUG]})`}
 						</label>
 					</li>
 				</ul>

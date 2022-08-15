@@ -35,6 +35,11 @@
 
 .home-card {
 	min-width: 40rem;
+	transition: transform 250ms ease-in;
+}
+
+.home-card:hover {
+	transform: scale(1.05);
 }
 
 .home-card .image-container {
@@ -47,6 +52,10 @@
 .home-card .image-container img {
 	width: 100%;
 }
+
+/* .home-card .image-container img:hover {
+	transform: scale(1.05);
+} */
 
 .card a {
 	color: inherit;
