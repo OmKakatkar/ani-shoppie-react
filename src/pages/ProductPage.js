@@ -6,10 +6,9 @@ import { getProducts } from "../util/product-request";
 import { useProduct } from "../context/product-context";
 import { getFilteredProducts } from "../helpers/filter-helper";
 import "./ProductPage.css";
-import { CLEAR_FILTERS } from "../constants/filter-constants";
 
 export const ProductPage = () => {
-	const { products, setProducts, filters, dispatch } = useProduct();
+	const { products, setProducts, filters } = useProduct();
 	const { category, maxPrice, price, rating } = filters;
 	const [isLoading, setIsLoading] = useState(false);
 	const [searchParams] = useSearchParams();
@@ -38,10 +37,6 @@ export const ProductPage = () => {
 			}
 		})();
 	}, [products, setProducts]);
-
-	useEffect(() => {
-		dispatch({ type: CLEAR_FILTERS });
-	}, [dispatch]);
 
 	return (
 		<>
