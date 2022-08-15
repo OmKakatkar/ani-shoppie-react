@@ -27,7 +27,6 @@ export const ProductPage = () => {
 
 	useEffect(() => {
 		if (location.state?.filter) {
-			console.log(location.state?.filter);
 			dispatch({
 				type: FILTER_BY_SINGLE_CATEGORY,
 				payload: location.state.filter,
