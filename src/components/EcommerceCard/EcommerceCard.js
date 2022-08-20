@@ -8,7 +8,6 @@ import {
 	removeFromWishList,
 	addToCart,
 } from "../../util/product-request";
-import { useProduct } from "../../context/product-context";
 import Card from "../Card/Card";
 
 import "./EcommerceCard.css";
@@ -16,8 +15,7 @@ import { Link } from "react-router-dom";
 import { checkItemInArray } from "../../util/utilities";
 
 function EcommerceCard({ isWishList, product, children }) {
-	const { user } = useAuth();
-	const { wishList, setWishList, cart, setCart } = useProduct();
+	const { user, wishList, setWishList, cart, setCart } = useAuth();
 
 	const { title, description, price, discount, image, rating, category } =
 		product;
@@ -63,7 +61,7 @@ function EcommerceCard({ isWishList, product, children }) {
 					<FontAwesomeIcon
 						icon={faHeart}
 						className={`icon ${
-							checkItemInArray(wishList, product) && (!isLoading) && "wishlist"
+							checkItemInArray(wishList, product) && !isLoading && "wishlist"
 						}`}
 					/>
 				</button>
@@ -97,7 +95,7 @@ function EcommerceCard({ isWishList, product, children }) {
 						</button>
 					) : (
 						<Link to="/cart" className="flex">
-							<button className="btn bg-green rounded">Show in Cart</button>
+							<button className="btn bg-green rounded">Go to Cart</button>
 						</Link>
 					)}
 				</>

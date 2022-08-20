@@ -9,12 +9,10 @@ import {
 import "./Navbar.css";
 import { useAuth } from "../../context/auth-context";
 import { Link, useLocation, useSearchParams } from "react-router-dom";
-import { useProduct } from "../../context/product-context";
 import { useState } from "react";
 
 export const Navbar = () => {
-	const { user, handleLogout } = useAuth();
-	const { wishList, cart } = useProduct();
+	const { user, handleLogout, wishList, cart } = useAuth();
 	const location = useLocation();
 	const [, setSearchParams] = useSearchParams();
 	const [searchQuery, setSearchQuery] = useState("");
@@ -67,7 +65,7 @@ export const Navbar = () => {
 						</Link>
 					</li>
 					<li className="nav-link">
-						<div className="flex-container flex-column">
+						<div className="flex-container flex-column pointer">
 							<FontAwesomeIcon icon={faUser} className="text-lg" />
 							<span className="text-sm">Profile</span>
 						</div>

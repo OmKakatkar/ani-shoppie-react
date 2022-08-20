@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import './ThankYou.css'
+import "./ThankYou.css";
 
 export const ThankYou = () => {
 	const [timer, setTimer] = useState(5);
@@ -18,7 +18,7 @@ export const ThankYou = () => {
 
 	return location.state?.path === "/order-summary" ? (
 		<div className="text-center text-huge flex-container thank-you-container">
-			Thank You for buying from us... You will be redirected in {timer}
+			Thank You for shopping with us... You will be redirected in {timer}
 		</div>
 	) : (
 		<Navigate to={"/products"} />

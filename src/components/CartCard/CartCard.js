@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faSubtract, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
-import { useProduct } from "../../context/product-context";
 import { checkItemInArray } from "../../util/utilities";
 import {
 	addToWishList,
@@ -14,8 +13,7 @@ import "./CartCard.css";
 
 function CartCard({ product }) {
 	const { title, price, qty, image, discount } = product;
-	const { user } = useAuth();
-	const { setCart, wishList, setWishList } = useProduct();
+	const { user, setCart, wishList, setWishList } = useAuth();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const deleteFromCart = async () => {
@@ -106,7 +104,7 @@ function CartCard({ product }) {
 				) : (
 					<Link to="/wishlist" className="flex">
 						<button className="btn bg-green rounded" disabled={isLoading}>
-							Show in Wishlist
+							Go to Wishlist
 						</button>
 					</Link>
 				)}

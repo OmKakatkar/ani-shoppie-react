@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import EcommerceCard from "../../components/EcommerceCard/EcommerceCard";
-import { useProduct } from "../../context/product-context";
+import { useAuth } from "../../context/auth-context";
 
 export const Wishlist = () => {
-	const { wishList } = useProduct();
+	const { wishList } = useAuth();
 
 	return (
 		<main className="ecom-main">

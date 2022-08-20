@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import CartCard from "../../components/CartCard/CartCard";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import CustomLink from "../../components/CustomLink/CustomLink";
-import { useProduct } from "../../context/product-context";
+import { useAuth } from "../../context/auth-context";
 import "./Cart.css";
 
 export const Cart = () => {
-	const { cart, cartTotal, setCartTotal } = useProduct();
+	const { cart, cartTotal, setCartTotal } = useAuth();
 
 	useEffect(() => {
+		console.log(cart);
 		const calculateCartTotal = () => {
 			return cart.reduce(
 				(subTotal, { price, discount, qty }) =>
-					subTotal + Math.round(price - (price * discount) / 100) * qty,
+					subTotal + (price - Math.round((price * discount) / 100)) * qty,
 				0
 			);
 		};
