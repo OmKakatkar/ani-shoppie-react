@@ -1,8 +1,8 @@
 import "./CartSummary.css";
-import { useProduct } from "../../context/product-context";
+import { useAuth } from "../../context/auth-context";
 
 function CartSummary({ children }) {
-	const { cartTotal } = useProduct();
+	const { cartTotal } = useAuth();
 
 	return (
 		<aside className="cart-summary">

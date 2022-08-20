@@ -59,21 +59,21 @@ const reducer = (state, action) => {
 const ProductProvider = ({ children }) => {
 	const [filters, dispatch] = useReducer(reducer, intialData);
 	const [products, setProducts] = useState([]);
-	const [wishList, setWishList] = useState([]);
-	const [cart, setCart] = useState([]);
-	const [cartTotal, setCartTotal] = useState(0);
+	// const [wishList, setWishList] = useState([]);
+	// const [cart, setCart] = useState([]);
+	// const [cartTotal, setCartTotal] = useState(0);
 
 	const productContextValue = {
 		filters,
 		dispatch,
 		products,
 		setProducts,
-		wishList,
-		setWishList,
-		cart,
-		setCart,
-		cartTotal,
-		setCartTotal,
+		// wishList,
+		// setWishList,
+		// cart,
+		// setCart,
+		// cartTotal,
+		// setCartTotal,
 	};
 	return (
 		<ProductContext.Provider value={productContextValue}>

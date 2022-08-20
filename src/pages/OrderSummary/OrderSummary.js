@@ -2,22 +2,19 @@ import { useLocation, Navigate, useNavigate } from "react-router-dom";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import usePaymentIntegration from "../../hooks/usePaymentIntegration";
 import { useAuth } from "../../context/auth-context";
-import { useProduct } from "../../context/product-context";
 import ProductSummaryCard from "../../components/ProductSummaryCard/ProductSummaryCard";
 import "./OrderSummary.css";
 import AddressCard from "../../components/AddressCard/AddressCard";
 import { emptyCart } from "../../util/product-request";
 
 export const OrderSummary = () => {
-	const { cart, cartTotal, setCart, setCartTotal } = useProduct();
-	const { user } = useAuth();
+	const { user, cart, cartTotal, setCart, setCartTotal } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const handleCheckout = async () => {
 		try {
 			const { data } = await emptyCart(user.token);
-			console.log(data);
 			setCartTotal(0);
 			setCart(data.cart);
 			navigate("/thank-you", { state: { path: location.pathname } });
