@@ -104,7 +104,7 @@ function CartCard({ product }) {
 				) : (
 					<Link to="/wishlist" className="flex">
 						<button className="btn bg-green rounded" disabled={isLoading}>
-							Show in Wishlist
+							Go to Wishlist
 						</button>
 					</Link>
 				)}

@@ -95,7 +95,7 @@ function EcommerceCard({ isWishList, product, children }) {
 						</button>
 					) : (
 						<Link to="/cart" className="flex">
-							<button className="btn bg-green rounded">Show in Cart</button>
+							<button className="btn bg-green rounded">Go to Cart</button>
 						</Link>
 					)}
 				</>

@@ -10,10 +10,11 @@ export const Cart = () => {
 	const { cart, cartTotal, setCartTotal } = useAuth();
 
 	useEffect(() => {
+		console.log(cart);
 		const calculateCartTotal = () => {
 			return cart.reduce(
 				(subTotal, { price, discount, qty }) =>
-					subTotal + Math.round(price - (price * discount) / 100) * qty,
+					subTotal + (price - Math.round((price * discount) / 100)) * qty,
 				0
 			);
 		};
